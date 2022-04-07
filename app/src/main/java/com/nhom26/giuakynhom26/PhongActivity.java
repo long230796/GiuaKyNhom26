@@ -31,6 +31,7 @@ public class PhongActivity extends AppCompatActivity {
     Dialog dialogThaoTac;
     Dialog dialogChinhSua;
     Dialog dialogChitiet;
+    Dialog dialogXoa;
 
     EditText edtLoaiPhong;
     EditText edtTang;
@@ -188,11 +189,36 @@ public class PhongActivity extends AppCompatActivity {
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancel();
+                cancel(dialogChinhSua);
             }
         });
 
         dialogChinhSua.show();
+    }
+
+    private void hienThiManHinhXoaPhong() {
+        dialogXoa = new Dialog(PhongActivity.this);
+        dialogXoa.setContentView(R.layout.activity_phong_delete);
+
+        Button btnCo = dialogXoa.findViewById(R.id.btnCo);
+        Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete();
+            }
+        });
+
+        btnKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel(dialogXoa);
+            }
+        });
+
+        dialogXoa.show();
+
     }
 
 
@@ -212,9 +238,21 @@ public class PhongActivity extends AppCompatActivity {
         }
     }
 
+    private void delete() {
+        int kq = MainActivity.database.delete("PHONGHOC", "MAPHONG=?", new String[]{selectedPhong.getMa()});
+        if (kq > 0) {
+            Toast.makeText(PhongActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            dialogXoa.dismiss();
+            getPhongHocFromDB();
+        } else {
+            Toast.makeText(PhongActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
 
-    private  void cancel() {
-        dialogChinhSua.dismiss();
+    }
+
+
+    private  void cancel(Dialog dialog) {
+        dialog.dismiss();
     }
 
     @Override
@@ -225,7 +263,7 @@ public class PhongActivity extends AppCompatActivity {
                 break;
 
             case R.id.mnuXoa:
-
+                hienThiManHinhXoaPhong();
                 break;
 
         }
