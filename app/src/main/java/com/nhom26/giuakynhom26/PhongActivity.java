@@ -29,8 +29,11 @@ import com.nhom26.model.Thietbi;
 public class PhongActivity extends AppCompatActivity {
 
     ListView lvPhong;
+    ListView lvThietBi;
     ArrayAdapter<Phong> phongAdapter;
+    ArrayAdapter<Thietbi> selectedThietbiAdapter;
     Phong selectedPhong = null;
+    Thietbi selectedThietBi = null;
 
     Dialog dialogThaoTac;
     Dialog dialogChinhSua;
@@ -197,6 +200,10 @@ public class PhongActivity extends AppCompatActivity {
         dialogThemPhong = new Dialog(PhongActivity.this);
         dialogThemPhong.setContentView(R.layout.activity_phong_add);
 
+        lvThietBi = (ListView) dialogThemPhong.findViewById(R.id.lvThietBi);
+        selectedThietbiAdapter = new ArrayAdapter<Thietbi>(PhongActivity.this, android.R.layout.simple_list_item_1);
+        lvThietBi.setAdapter(selectedThietbiAdapter);
+
         imgThemThietBi = dialogThemPhong.findViewById(R.id.imgAddEquipment);
         imgThemThietBi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,8 +224,9 @@ public class PhongActivity extends AppCompatActivity {
         final TextView txtTentb = (TextView) dialogThemThietBi.findViewById(R.id.txtTentb);
         final TextView txtXuatxu = (TextView) dialogThemThietBi.findViewById(R.id.txtXuatxu);
         final TextView txtMaloai = (TextView) dialogThemThietBi.findViewById(R.id.txtMaloai);
-        Button btnChon = (Button) dialogThemThietBi.findViewById(R.id.btnChon);
         final Button btnHuy = (Button) dialogThemThietBi.findViewById(R.id.btnHuy);
+        Button btnChon = (Button) dialogThemThietBi.findViewById(R.id.btnChon);
+        selectedThietBi = null;
 
 
         MultiAutoCompleteTextView mactv;
@@ -232,7 +240,8 @@ public class PhongActivity extends AppCompatActivity {
         mactv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                 Thietbi thietBi = thietBiAdapter.getItem(i);
+                Thietbi thietBi = thietBiAdapter.getItem(i);
+                selectedThietBi = thietBi;
                 txtMatb.setText(thietBi.getMatb());
                 txtTentb.setText(thietBi.getTentb());
                 txtXuatxu.setText(thietBi.getXuatxu());
@@ -244,6 +253,18 @@ public class PhongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialogThemThietBi.dismiss();
+            }
+        });
+
+        btnChon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedThietBi != null) {
+                    selectedThietbiAdapter.add(selectedThietBi);
+                    dialogThemThietBi.dismiss();
+                } else {
+                    Toast.makeText(PhongActivity.this, "Vui lòng chọn thiết bị", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

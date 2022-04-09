@@ -39,6 +39,7 @@
                 android:id="@+id/imageView" />
 
             <MultiAutoCompleteTextView
+                android:inputType="textPhonetic"
                 android:id="@+id/multiAutoCompleteTextView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,10 +66,10 @@
 
             <TextView
                 android:text="Mã TB"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,17 +83,17 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <TextView
                 android:text="Tên TB"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,17 +108,17 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <TextView
                 android:text="xuất xứ"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,17 +133,17 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <TextView
                 android:text="Mã loại"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
