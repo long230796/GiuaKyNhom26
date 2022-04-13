@@ -162,7 +162,8 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_weight="0.04">
+            android:layout_weight="0.04"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:text="Số lượng"

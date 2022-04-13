@@ -19,6 +19,9 @@ public class SelectedThietBiAdapter extends ArrayAdapter<Thietbi> {
     Activity context;
     int resource;
 
+
+    Thietbi tb;
+
     public SelectedThietBiAdapter(Activity context, int resource) {
         super(context, resource);
         this.context = context;
@@ -35,13 +38,14 @@ public class SelectedThietBiAdapter extends ArrayAdapter<Thietbi> {
         TextView txtSoluong = customView.findViewById(R.id.txtSoluongSelected);
         ImageView imgDel = customView.findViewById(R.id.imgDeleteSelected);
 
-
-
-        Thietbi tb = getItem(position);
+        tb = getItem(position);
         imgDel.setImageResource(R.drawable.ic_remove_circle_black_24dp);
         txtTen.setText(tb.getTentb());
         txtSoluong.setText(tb.getSoluong());
+
+
         return customView;
     }
+
 
 }

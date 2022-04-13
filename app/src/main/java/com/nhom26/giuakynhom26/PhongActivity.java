@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.adapter.SelectedThietBiAdapter;
+import com.nhom26.giuakynhom26.dialog.DialogThemPhong;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
 
@@ -34,12 +35,12 @@ import java.util.Random;
 public class PhongActivity extends AppCompatActivity {
 
     ListView lvPhong;
-    ListView lvThietBi;
+    public static ListView lvThietBi;
     ArrayAdapter<Phong> phongAdapter;
-    ArrayAdapter<Thietbi> thietBiAdapter;
-    SelectedThietBiAdapter selectedThietbiAdapter;
+    public static ArrayAdapter<Thietbi> thietBiAdapter;
+    public static SelectedThietBiAdapter selectedThietbiAdapter;
     Phong selectedPhong = null;
-    Thietbi selectedThietBi = null;
+    public static Thietbi selectedThietBi = null;
 
     Dialog dialogThaoTac;
     Dialog dialogChinhSua;
@@ -179,8 +180,6 @@ public class PhongActivity extends AppCompatActivity {
     }
 
 
-
-
     private void hienThiManHinhChiTiet() {
         dialogChitiet = new Dialog(PhongActivity.this);
         dialogChitiet.setContentView(R.layout.activity_phong_detail);
@@ -203,7 +202,7 @@ public class PhongActivity extends AppCompatActivity {
     }
 
     private void hienThiManHinhThemPhong() {
-        dialogThemPhong = new Dialog(PhongActivity.this);
+        dialogThemPhong = new DialogThemPhong(PhongActivity.this);
         dialogThemPhong.setContentView(R.layout.activity_phong_add);
 
         lvThietBi = (ListView) dialogThemPhong.findViewById(R.id.lvThietBi);
@@ -223,6 +222,8 @@ public class PhongActivity extends AppCompatActivity {
                 hienThiManHinhTimThietBi();
             }
         });
+
+        registerForContextMenu(lvThietBi);
 
         btnLuuPhong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,6 +283,9 @@ public class PhongActivity extends AppCompatActivity {
         });
 
         dialogThemPhong.show();
+    }
+
+    public static void deleteSelectedThietbi() {
     }
 
     private void hienThiManHinhTimThietBi() {
