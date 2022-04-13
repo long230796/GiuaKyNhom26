@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/edtLoaiPhong"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -72,9 +72,9 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/edtTang"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -132,14 +132,14 @@
         <Button
             android:text="Lưu"
             android:layout_height="wrap_content"
-            android:id="@+id/button2"
+            android:id="@+id/btnLuuPhong"
             android:layout_width="115dp" />
 
         <Button
             android:text="Hủy"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button" />
+            android:id="@+id/btnHuyPhong" />
     </LinearLayout>
 
 

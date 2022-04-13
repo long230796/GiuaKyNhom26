@@ -22,7 +22,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/textview_border">
+        android:background="@drawable/textview_border"
+        android:weightSum="1">
 
 
         <LinearLayout
@@ -149,6 +150,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMaloai"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.04">
+
+            <TextView
+                android:text="Số lượng"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:textSize="14sp"
+                android:layout_width="50dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edtSoluong"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 

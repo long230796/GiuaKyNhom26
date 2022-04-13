@@ -24,6 +24,10 @@ import android.widget.Toast;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 //import android.widget.SearchView;
 
 public class PhongActivity extends AppCompatActivity {
@@ -204,11 +208,72 @@ public class PhongActivity extends AppCompatActivity {
         selectedThietbiAdapter = new ArrayAdapter<Thietbi>(PhongActivity.this, android.R.layout.simple_list_item_1);
         lvThietBi.setAdapter(selectedThietbiAdapter);
 
+        Button btnLuuPhong = dialogThemPhong.findViewById(R.id.btnLuuPhong);
+        Button btnHuyPhong = dialogThemPhong.findViewById(R.id.btnHuyPhong);
+        final EditText edtLoaiPhong = dialogThemPhong.findViewById(R.id.edtLoaiPhong);
+        final EditText edtTang = dialogThemPhong.findViewById(R.id.edtTang);
+
+
         imgThemThietBi = dialogThemPhong.findViewById(R.id.imgAddEquipment);
         imgThemThietBi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 hienThiManHinhTimThietBi();
+            }
+        });
+
+        btnLuuPhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (edtLoaiPhong.getText() != null && edtTang != null) {
+                    // tao maphong
+                    Random r = new Random();
+                    int randomInt = r.nextInt(10000) + 1;
+
+                    // tao ngay
+                    String pattern = "dd/MM/yyyy";
+                    String dateInString =new SimpleDateFormat(pattern).format(new Date());
+
+
+                    // them phong
+                    ContentValues values = new ContentValues();
+                    values.put("MAPHONG", "p" + String.valueOf(randomInt));
+                    values.put("LOAIPHONG", edtLoaiPhong.getText().toString());
+                    values.put("TANG", edtTang.getText().toString());
+                    long kq = MainActivity.database.insert("PHONGHOC", null, values);
+                    if (kq > 0) {
+                        values.remove("LOAIPHONG");
+                        values.remove("TANG");
+                        long ok = 0;
+                        for (int i = 0; i < selectedThietbiAdapter.getCount(); i ++) {
+                            values.put("MATB", selectedThietbiAdapter.getItem(i).getMatb());
+                            values.put("SOLUONG", selectedThietbiAdapter.getItem(i).getSoluong());
+                            values.put("NGAYSUDUNG", dateInString);
+                            ok = MainActivity.database.insert("CHITIETSUDUNG", null, values);
+                            if (ok <= 0) {
+                                Toast.makeText(PhongActivity.this, "Không thể thêm chi tiết sử dụng, thiết bị: " + selectedThietbiAdapter.getItem(i).getMatb() , Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                       }
+                        Toast.makeText(PhongActivity.this, "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
+                        dialogThemPhong.dismiss();
+                        getPhongHocFromDB();
+                    } else {
+                        Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Toast.makeText(PhongActivity.this, "finish", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(PhongActivity.this, "Vui lòng điền đủ thông tin", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnHuyPhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogThemPhong.dismiss();
             }
         });
 
@@ -225,6 +290,7 @@ public class PhongActivity extends AppCompatActivity {
         final TextView txtXuatxu = (TextView) dialogThemThietBi.findViewById(R.id.txtXuatxu);
         final TextView txtMaloai = (TextView) dialogThemThietBi.findViewById(R.id.txtMaloai);
         final Button btnHuy = (Button) dialogThemThietBi.findViewById(R.id.btnHuy);
+        final EditText edtSoluong = dialogThemThietBi.findViewById(R.id.edtSoluong);
         Button btnChon = (Button) dialogThemThietBi.findViewById(R.id.btnChon);
         selectedThietBi = null;
 
@@ -260,6 +326,7 @@ public class PhongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedThietBi != null) {
+                    selectedThietBi.setSoluong(edtSoluong.getText().toString());
                     selectedThietbiAdapter.add(selectedThietBi);
                     dialogThemThietBi.dismiss();
                 } else {
