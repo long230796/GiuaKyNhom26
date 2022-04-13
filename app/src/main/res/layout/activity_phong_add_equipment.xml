@@ -169,7 +169,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textSize="14sp"
-                android:layout_width="50dp" />
+                android:layout_width="50dp"
+                android:paddingBottom="10dp" />
 
             <EditText
                 android:layout_width="match_parent"

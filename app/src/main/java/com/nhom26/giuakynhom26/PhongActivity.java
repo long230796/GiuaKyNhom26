@@ -327,9 +327,13 @@ public class PhongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedThietBi != null) {
-                    selectedThietBi.setSoluong(edtSoluong.getText().toString());
-                    selectedThietbiAdapter.add(selectedThietBi);
-                    dialogThemThietBi.dismiss();
+                    if (!edtSoluong.getText().toString().matches("")) {
+                        selectedThietBi.setSoluong(edtSoluong.getText().toString());
+                        selectedThietbiAdapter.add(selectedThietBi);
+                        dialogThemThietBi.dismiss();
+                    } else {
+                        Toast.makeText(PhongActivity.this, "Vui lòng chọn số lượng", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(PhongActivity.this, "Vui lòng chọn thiết bị", Toast.LENGTH_SHORT).show();
                 }
