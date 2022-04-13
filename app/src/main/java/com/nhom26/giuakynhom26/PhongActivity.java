@@ -36,6 +36,7 @@ public class PhongActivity extends AppCompatActivity {
     ListView lvPhong;
     ListView lvThietBi;
     ArrayAdapter<Phong> phongAdapter;
+    ArrayAdapter<Thietbi> thietBiAdapter;
     SelectedThietBiAdapter selectedThietbiAdapter;
     Phong selectedPhong = null;
     Thietbi selectedThietBi = null;
@@ -274,6 +275,8 @@ public class PhongActivity extends AppCompatActivity {
         btnHuyPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // reset thietbiAdapter
+                thietBiAdapter = null;
                 dialogThemPhong.dismiss();
             }
         });
@@ -298,8 +301,10 @@ public class PhongActivity extends AppCompatActivity {
 
         MultiAutoCompleteTextView mactv;
         mactv = (MultiAutoCompleteTextView)dialogThemThietBi.findViewById(R.id.multiAutoCompleteTextView1);
-        final ArrayAdapter<Thietbi> thietBiAdapter = new ArrayAdapter<Thietbi>(PhongActivity.this, android.R.layout.simple_list_item_1);
-        getThietBiFromDB(thietBiAdapter);
+        if (thietBiAdapter == null) {
+            thietBiAdapter = new ArrayAdapter<Thietbi>(PhongActivity.this, android.R.layout.simple_list_item_1);
+            getThietBiFromDB(thietBiAdapter);
+        }
 
         mactv.setAdapter(thietBiAdapter);
         mactv.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
@@ -307,12 +312,11 @@ public class PhongActivity extends AppCompatActivity {
         mactv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Thietbi thietBi = thietBiAdapter.getItem(i);
-                selectedThietBi = thietBi;
-                txtMatb.setText(thietBi.getMatb());
-                txtTentb.setText(thietBi.getTentb());
-                txtXuatxu.setText(thietBi.getXuatxu());
-                txtMaloai.setText(thietBi.getMaloai());
+                selectedThietBi = thietBiAdapter.getItem(i);
+                txtMatb.setText(selectedThietBi.getMatb());
+                txtTentb.setText(selectedThietBi.getTentb());
+                txtXuatxu.setText(selectedThietBi.getXuatxu());
+                txtMaloai.setText(selectedThietBi.getMaloai());
             }
         });
 
@@ -330,6 +334,7 @@ public class PhongActivity extends AppCompatActivity {
                     if (!edtSoluong.getText().toString().matches("")) {
                         selectedThietBi.setSoluong(edtSoluong.getText().toString());
                         selectedThietbiAdapter.add(selectedThietBi);
+                        thietBiAdapter.remove(selectedThietBi);
                         dialogThemThietBi.dismiss();
                     } else {
                         Toast.makeText(PhongActivity.this, "Vui lòng chọn số lượng", Toast.LENGTH_SHORT).show();
