@@ -21,6 +21,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.adapter.SelectedThietBiAdapter;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
 
@@ -35,7 +36,7 @@ public class PhongActivity extends AppCompatActivity {
     ListView lvPhong;
     ListView lvThietBi;
     ArrayAdapter<Phong> phongAdapter;
-    ArrayAdapter<Thietbi> selectedThietbiAdapter;
+    SelectedThietBiAdapter selectedThietbiAdapter;
     Phong selectedPhong = null;
     Thietbi selectedThietBi = null;
 
@@ -205,7 +206,7 @@ public class PhongActivity extends AppCompatActivity {
         dialogThemPhong.setContentView(R.layout.activity_phong_add);
 
         lvThietBi = (ListView) dialogThemPhong.findViewById(R.id.lvThietBi);
-        selectedThietbiAdapter = new ArrayAdapter<Thietbi>(PhongActivity.this, android.R.layout.simple_list_item_1);
+        selectedThietbiAdapter = new SelectedThietBiAdapter(PhongActivity.this, R.layout.phong_custom_equipment);
         lvThietBi.setAdapter(selectedThietbiAdapter);
 
         Button btnLuuPhong = dialogThemPhong.findViewById(R.id.btnLuuPhong);
