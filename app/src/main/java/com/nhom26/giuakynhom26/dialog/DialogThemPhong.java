@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.adapter.SelectedThietBiAdapter;
 import com.nhom26.giuakynhom26.PhongActivity;
 import com.nhom26.giuakynhom26.R;
 
@@ -19,22 +22,29 @@ import com.nhom26.giuakynhom26.R;
 public class DialogThemPhong extends Dialog {
 
     PhongActivity context;
-    ListView lvThietbi;
     int selectedLvItem;
 
-    public DialogThemPhong( PhongActivity context) {
+    public DialogThemPhong(PhongActivity context) {
         super(context);
         this.context = context;
+        this.setContentView(R.layout.activity_phong_add);
+
+        context.lvThietBi = (ListView) this.findViewById(R.id.lvThietBi);
+        context.selectedThietbiAdapter = new SelectedThietBiAdapter(context, R.layout.phong_custom_equipment);
+        context.lvThietBi.setAdapter(context.selectedThietbiAdapter);
+
+        addEvents();
 
     }
 
     private void addEvents() {
-        lvThietbi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        context.lvThietBi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedLvItem = i;
                 return false;
             }
+
         });
     }
 
@@ -54,7 +64,6 @@ public class DialogThemPhong extends Dialog {
     // method but you are free to do the actual processing here itself
     @Override
     public boolean onMenuItemSelected(int aFeatureId, MenuItem aMenuItem) {
-        System.out.print("mnuSua");
         if (aFeatureId == Window.FEATURE_CONTEXT_MENU)
             return onContextItemSelected(aMenuItem);
         else
@@ -66,17 +75,61 @@ public class DialogThemPhong extends Dialog {
 
         switch (item.getItemId()) {
             case R.id.mnuSua:
-//                hienThiManHinhEditPhong();
-                Toast.makeText(context, "mnuSua", Toast.LENGTH_SHORT).show();
+               hienThiManHinhEditPhong();
                 break;
 
             case R.id.mnuXoa:
-                Toast.makeText(context, "mnuXoa", Toast.LENGTH_SHORT).show();
                 hienThiManHinhXoaPhong();
                 break;
 
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void hienThiManHinhEditPhong() {
+        final Dialog dialogEditSoluong = new Dialog(context);
+        dialogEditSoluong.setContentView(R.layout.dialog_phong_edit_equipment);
+
+        TextView txtMatb = (TextView) dialogEditSoluong.findViewById(R.id.txtMatb);
+        TextView txtTentb = (TextView) dialogEditSoluong.findViewById(R.id.txtTentb);
+        TextView txtXuatxu = (TextView) dialogEditSoluong.findViewById(R.id.txtXuatxu);
+        TextView txtMaloai = (TextView) dialogEditSoluong.findViewById(R.id.txtMaloai);
+        Button btnHuy = (Button) dialogEditSoluong.findViewById(R.id.btnHuy);
+        Button btnSua = (Button) dialogEditSoluong.findViewById(R.id.btnChon);
+        final EditText edtSoluong = dialogEditSoluong.findViewById(R.id.edtSoluong);
+
+        txtMatb.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getMatb());
+        txtTentb.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getTentb());
+        txtXuatxu.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getXuatxu());
+        txtMaloai.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getMaloai());
+        edtSoluong.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getSoluong());
+
+        btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String soluong = edtSoluong.getText().toString();
+                context.selectedThietbiAdapter.getItem(selectedLvItem).setSoluong(soluong);
+                context.selectedThietbiAdapter.notifyDataSetChanged();
+
+                Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                dialogEditSoluong.dismiss();
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogEditSoluong.dismiss();
+            }
+        });
+
+        dialogEditSoluong.show();
+    }
+
+
+    private void editSoluong(EditText edtSoluong, Dialog dialogEditSoluong) {
+
     }
 
     private void hienThiManHinhXoaPhong() {
@@ -89,8 +142,7 @@ public class DialogThemPhong extends Dialog {
         btnCo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lvThietbi = context.lvThietBi;
-                addEvents();
+
                 context.thietBiAdapter.add(context.selectedThietbiAdapter.getItem(selectedLvItem));
                 context.selectedThietbiAdapter.remove(context.selectedThietbiAdapter.getItem(selectedLvItem));
                 Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();

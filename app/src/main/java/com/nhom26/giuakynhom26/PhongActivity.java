@@ -203,11 +203,6 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhThemPhong() {
         dialogThemPhong = new DialogThemPhong(PhongActivity.this);
-        dialogThemPhong.setContentView(R.layout.activity_phong_add);
-
-        lvThietBi = (ListView) dialogThemPhong.findViewById(R.id.lvThietBi);
-        selectedThietbiAdapter = new SelectedThietBiAdapter(PhongActivity.this, R.layout.phong_custom_equipment);
-        lvThietBi.setAdapter(selectedThietbiAdapter);
 
         Button btnLuuPhong = dialogThemPhong.findViewById(R.id.btnLuuPhong);
         Button btnHuyPhong = dialogThemPhong.findViewById(R.id.btnHuyPhong);
