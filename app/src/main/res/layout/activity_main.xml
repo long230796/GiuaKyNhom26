@@ -45,12 +45,14 @@
         android:layout_height="match_parent">
 
         <Button
+            android:onClick="quanLyLoai"
             android:text="Quản lý loại"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnLoai" />
 
         <Button
+            android:onClick="quanLyThietBi"
             android:text="Quản lý thiết bị"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
