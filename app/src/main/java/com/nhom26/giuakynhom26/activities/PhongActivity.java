@@ -1,4 +1,4 @@
-package com.nhom26.giuakynhom26;
+package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.adapter.SelectedThietBiAdapter;
+import com.nhom26.giuakynhom26.R;
 import com.nhom26.giuakynhom26.dialog.DialogThemPhong;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
@@ -182,7 +183,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhChiTiet() {
         dialogChitiet = new Dialog(PhongActivity.this);
-        dialogChitiet.setContentView(R.layout.activity_phong_detail);
+        dialogChitiet.setContentView(R.layout.dialog_phong_detail);
 
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaPhong);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtLoaiPhong);
@@ -197,7 +198,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhThaoTac() {
         dialogThaoTac = new Dialog(PhongActivity.this);
-        dialogThaoTac.setContentView(R.layout.activity_phong_action);
+        dialogThaoTac.setContentView(R.layout.dialog_phong_action);
         dialogThaoTac.show();
     }
 
@@ -286,7 +287,7 @@ public class PhongActivity extends AppCompatActivity {
     private void hienThiManHinhTimThietBi() {
 
         dialogThemThietBi = new Dialog(PhongActivity.this);
-        dialogThemThietBi.setContentView(R.layout.activity_phong_add_equipment);
+        dialogThemThietBi.setContentView(R.layout.dialog_phong_add_equipment);
 
         final TextView txtMatb = (TextView) dialogThemThietBi.findViewById(R.id.txtMatb);
         final TextView txtTentb = (TextView) dialogThemThietBi.findViewById(R.id.txtTentb);
@@ -350,7 +351,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhEditPhong() {
         dialogChinhSua = new Dialog(PhongActivity.this);
-        dialogChinhSua.setContentView(R.layout.activity_phong_edit);
+        dialogChinhSua.setContentView(R.layout.dialog_phong_edit);
 
         edtLoaiPhong = (EditText) dialogChinhSua.findViewById(R.id.edtLoaiPhong);
         edtTang = (EditText) dialogChinhSua.findViewById(R.id.edtTang);
@@ -383,7 +384,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhXoaPhong() {
         dialogXoa = new Dialog(PhongActivity.this);
-        dialogXoa.setContentView(R.layout.activity_phong_delete);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
 
         Button btnCo = dialogXoa.findViewById(R.id.btnCo);
         Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
