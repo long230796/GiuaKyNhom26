@@ -5,9 +5,8 @@
     android:weightSum="1"
     android:layout_width="match_parent">
 
-
     <TextView
-        android:text="Chi tiết"
+        android:text="Sửa thông tin "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -43,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtMaPhong"
+                android:id="@+id/txtMaPhongUpdateView"
                 android:layout_weight="1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -64,10 +63,12 @@
                 android:id="@+id/textView4"
                 android:textSize="14sp" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtLoaiPhong"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtLoaiPhong"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -89,10 +90,12 @@
                 android:id="@+id/textView5"
                 android:textSize="14sp" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtTang"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtTang"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -109,11 +112,17 @@
             android:layout_marginRight="20dp">
 
             <Button
-                android:text="Chi Tiết Sử Dụng"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnChiTietSuDung"
-                android:layout_gravity="center"
+                android:id="@+id/btnCapNhatPhong"
+                android:layout_weight="1"
+                android:text="Lưu" />
+
+            <Button
+                android:text="Hủy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnHuyCapNhatPhong"
                 android:layout_weight="1" />
         </LinearLayout>
 

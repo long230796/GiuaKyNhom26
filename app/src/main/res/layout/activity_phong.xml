@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_add_circle_black_24dp"
-            android:id="@+id/imageView"
+            android:id="@+id/imgThemPhong"
             android:layout_weight="0.16" />
 
     </LinearLayout>
