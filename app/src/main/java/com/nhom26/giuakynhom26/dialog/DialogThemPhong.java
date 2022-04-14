@@ -38,6 +38,29 @@ public class DialogThemPhong extends Dialog {
     }
 
     private void addEvents() {
+
+        context.lvThietBi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Dialog dialogChitietThietbi = new Dialog(context);
+                dialogChitietThietbi.setContentView(R.layout.dialog_detail_equipment);
+
+                TextView txtMatb = (TextView) dialogChitietThietbi.findViewById(R.id.txtMatb);
+                TextView txtTentb = (TextView) dialogChitietThietbi.findViewById(R.id.txtTentb);
+                TextView txtXuatxu = (TextView) dialogChitietThietbi.findViewById(R.id.txtXuatxu);
+                TextView txtMaloai = (TextView) dialogChitietThietbi.findViewById(R.id.txtMaloai);
+                TextView txtSoluong = (TextView) dialogChitietThietbi.findViewById(R.id.txtSoluong);
+
+                txtMatb.setText(context.selectedThietbiAdapter.getItem(i).getMatb());
+                txtTentb.setText(context.selectedThietbiAdapter.getItem(i).getTentb());
+                txtXuatxu.setText(context.selectedThietbiAdapter.getItem(i).getXuatxu());
+                txtMaloai.setText(context.selectedThietbiAdapter.getItem(i).getMaloai());
+                txtSoluong.setText(context.selectedThietbiAdapter.getItem(i).getSoluong());
+
+                dialogChitietThietbi.show();
+            }
+        });
+
         context.lvThietBi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
