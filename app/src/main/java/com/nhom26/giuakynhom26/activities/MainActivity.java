@@ -1,7 +1,6 @@
-package com.nhom26.giuakynhom26;
+package com.nhom26.giuakynhom26.activities;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nhom26.giuakynhom26.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

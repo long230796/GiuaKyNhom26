@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.adapter.SelectedThietBiAdapter;
-import com.nhom26.giuakynhom26.PhongActivity;
+import com.nhom26.giuakynhom26.activities.PhongActivity;
 import com.nhom26.giuakynhom26.R;
 
 /**
@@ -27,7 +27,7 @@ public class DialogThemPhong extends Dialog {
     public DialogThemPhong(PhongActivity context) {
         super(context);
         this.context = context;
-        this.setContentView(R.layout.activity_phong_add);
+        this.setContentView(R.layout.dialog_phong_add);
 
         context.lvThietBi = (ListView) this.findViewById(R.id.lvThietBi);
         context.selectedThietbiAdapter = new SelectedThietBiAdapter(context, R.layout.phong_custom_equipment);
@@ -157,7 +157,7 @@ public class DialogThemPhong extends Dialog {
 
     private void hienThiManHinhXoaPhong() {
         final Dialog dialogXoa = new Dialog(context);
-        dialogXoa.setContentView(R.layout.activity_phong_delete);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
 
         Button btnCo = dialogXoa.findViewById(R.id.btnCo);
         Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
