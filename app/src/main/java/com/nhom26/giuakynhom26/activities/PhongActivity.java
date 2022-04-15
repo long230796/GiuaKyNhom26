@@ -273,8 +273,6 @@ public class PhongActivity extends AppCompatActivity {
                         Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
                     }
 
-                    Toast.makeText(PhongActivity.this, "finish", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(PhongActivity.this, "Vui lòng điền đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
@@ -379,8 +377,6 @@ public class PhongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update();
-//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
-
             }
         });
 
