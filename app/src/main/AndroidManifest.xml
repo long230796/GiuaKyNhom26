@@ -14,7 +14,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/phong_name" android:name=".activities.PhongActivity"></activity>
+        <activity
+            android:name=".activities.PhongActivity"
+            android:label="@string/phong_name" />
+        <activity
+            android:name=".activities.ChitietsudungPhongActivity"
+            android:label="Chi tiết sử dụng">
+
+        </activity>
     </application>
 
 </manifest>

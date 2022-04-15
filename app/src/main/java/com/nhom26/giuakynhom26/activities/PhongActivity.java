@@ -2,6 +2,7 @@ package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -188,10 +189,21 @@ public class PhongActivity extends AppCompatActivity {
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaPhong);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtLoaiPhong);
         TextView txtTang = dialogChitiet.findViewById(R.id.txtTang);
+        Button btnChitietsudung = dialogChitiet.findViewById(R.id.btnChiTietSuDung);
 
         txtMa.setText(selectedPhong.getMa());
         txtLoai.setText(selectedPhong.getLoai());
         txtTang.setText(String.valueOf(selectedPhong.getTang()));
+
+        btnChitietsudung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PhongActivity.this, ChitietsudungPhongActivity.class);
+                intent.putExtra("phong", selectedPhong);
+
+                startActivity(intent);
+            };
+        });
 
         dialogChitiet.show();
     }
