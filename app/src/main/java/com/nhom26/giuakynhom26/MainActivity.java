@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void quanLyThietBi(View view) {
-//        Intent intent = new Intent(MainActivity.this, ThietBiActivity.class);
-//        startActivity(intent);
-//    }
-//
+    public void quanLyThietBi(View view) {
+        Intent intent = new Intent(MainActivity.this, ThietBiActivity.class);
+        startActivity(intent);
+    }
+
     public void quanLyLoai(View view) {
         Intent intent = new Intent(MainActivity.this, LoaiTBActivity.class);
         startActivity(intent);

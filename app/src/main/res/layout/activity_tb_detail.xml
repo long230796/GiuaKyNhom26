@@ -5,8 +5,9 @@
     android:weightSum="1"
     android:layout_width="match_parent">
 
+
     <TextView
-        android:text="Sửa thông tin loại thiết bị"
+        android:text="Chi tiết thiết bị"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -33,7 +34,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Mã loại"
+                android:text="Mã Thiết bị"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -42,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtMaLoaiedit"
+                android:id="@+id/txtMaTBdetail"
                 android:layout_weight="1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -57,18 +58,16 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Tên Loại thiết bị"
+                android:text="Tên Thiết bị"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/edtLoaiedit"
+                android:id="@+id/txtTenTBdetail"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -79,24 +78,49 @@
             android:layout_width="248dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
-            <Button
-                android:layout_width="wrap_content"
+            <TextView
+                android:text="Xuất xứ"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnCapNhatLoai"
-                android:layout_weight="1"
-                android:text="Lưu" />
+                android:id="@+id/textView6"
+                android:textSize="14sp" />
 
-            <Button
-                android:text="Hủy"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnHuyCapNhatLoai"
-                android:layout_weight="1" />
+                android:id="@+id/txtXuatXudetail"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:text="Loại Thiết Bị"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtLoaiTBdetailTB"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
 

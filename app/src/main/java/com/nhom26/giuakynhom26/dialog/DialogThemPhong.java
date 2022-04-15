@@ -54,7 +54,7 @@ public class DialogThemPhong extends Dialog {
                 txtMatb.setText(context.selectedThietbiAdapter.getItem(i).getMatb());
                 txtTentb.setText(context.selectedThietbiAdapter.getItem(i).getTentb());
                 txtXuatxu.setText(context.selectedThietbiAdapter.getItem(i).getXuatxu());
-                txtMaloai.setText(context.selectedThietbiAdapter.getItem(i).getMaloai());
+//                txtMaloai.setText(context.selectedThietbiAdapter.getItem(i).getMaloai());
                 txtSoluong.setText(context.selectedThietbiAdapter.getItem(i).getSoluong());
 
                 dialogChitietThietbi.show();
@@ -124,7 +124,7 @@ public class DialogThemPhong extends Dialog {
         txtMatb.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getMatb());
         txtTentb.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getTentb());
         txtXuatxu.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getXuatxu());
-        txtMaloai.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getMaloai());
+//        txtMaloai.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getMaloai());
         edtSoluong.setText(context.selectedThietbiAdapter.getItem(selectedLvItem).getSoluong());
 
         btnSua.setOnClickListener(new View.OnClickListener() {

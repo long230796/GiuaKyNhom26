@@ -6,7 +6,7 @@
     android:layout_width="match_parent">
 
     <TextView
-        android:text="Sửa thông tin loại thiết bị"
+        android:text="Sửa thông tin thiết bị"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -33,7 +33,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Mã loại"
+                android:text="Mã Thiết Bị"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -42,9 +42,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtMaLoaiedit"
+                android:id="@+id/txtMaTBedit"
                 android:layout_weight="1"
                 android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:text="Tên thiết bị"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="14sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/edtTenTBedit"
+            android:layout_weight="1"
+            android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,10 +83,10 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Tên Loại thiết bị"
+                android:text="Xuất Xứ"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4"
+                android:id="@+id/textView10"
                 android:textSize="14sp" />
 
             <EditText
@@ -68,9 +94,35 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/edtLoaiedit"
+                android:id="@+id/edtXuatXuedit"
                 android:layout_weight="1"
                 android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:text="Loại Thiết Bị"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spLoaiTB"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
 
         </LinearLayout>
 
@@ -103,4 +155,3 @@
     </LinearLayout>
 
 </LinearLayout>
-
