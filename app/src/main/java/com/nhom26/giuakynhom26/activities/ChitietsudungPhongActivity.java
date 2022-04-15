@@ -333,6 +333,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             Toast.makeText(ChitietsudungPhongActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
             dialogXoa.dismiss();
             getPhongHocChitietsudungFromDB(phong);
+            getUnusedThietBi();
         } else {
             Toast.makeText(ChitietsudungPhongActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
         }
