@@ -10,8 +10,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhom26.adapter.ChitietThietBiPhongAdapter;
 import com.nhom26.giuakynhom26.R;
@@ -49,6 +51,14 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
                 hienThiDialogThietBi(chitietsudungAdapter.getItem(i));
 
 
+            }
+        });
+
+        lvThietBi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getThietBiByMa(chitietsudungAdapter.getItem(i).getMatb());
+                return false;
             }
         });
 
@@ -157,11 +167,52 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
                 break;
 
             case R.id.mnuXoa:
-//                hienThiManHinhXoaThietbi();
+                hienThiManHinhXoaThietbi();
                 break;
 
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void hienThiManHinhXoaThietbi() {
+        final Dialog dialogXoa = new Dialog(ChitietsudungPhongActivity.this);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
+
+        Button btnCo = dialogXoa.findViewById(R.id.btnCo);
+        Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                xoaThietBi(dialogXoa);
+            }
+        });
+
+        btnKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel(dialogXoa);
+            }
+        });
+
+        dialogXoa.show();
+    }
+
+    private void cancel(Dialog dialogXoa) {
+        dialogXoa.dismiss();
+    }
+
+    private void xoaThietBi(Dialog dialogXoa) {
+        String maphong = phong.getMa();
+        String matb = selectedThietBi.getMatb();
+        int kq = MainActivity.database.delete("CHITIETSUDUNG", "MAPHONG=? AND MATB=?", new String[]{maphong, matb});
+        if (kq > 0) {
+            Toast.makeText(ChitietsudungPhongActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            dialogXoa.dismiss();
+            getPhongHocChitietsudungFromDB(phong);
+        } else {
+            Toast.makeText(ChitietsudungPhongActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void hienThiManHinhEditThietbi() {
