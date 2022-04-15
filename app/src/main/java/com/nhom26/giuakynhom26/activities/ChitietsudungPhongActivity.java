@@ -1,6 +1,7 @@
 package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,8 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +26,23 @@ import com.nhom26.model.Chitietsudung;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ChitietsudungPhongActivity extends AppCompatActivity {
 
     TextView txtMaP, txtLoaiP, txtTang;
+    ImageView imgAdd;
     ListView lvThietBi;
     Phong phong;
-    Thietbi selectedThietBi;
+    Thietbi selectedThietBi, selectedUnusedThietbi;
     ChitietThietBiPhongAdapter chitietsudungAdapter;
-    ArrayList<Thietbi> arrayThietbi;
+    ArrayAdapter<Thietbi> thietbiAdapter, unusedThietbiAdapter;
+    List<String> usedThietbi;
+
+    String queryParamenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +59,16 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 getThietBiByMa(chitietsudungAdapter.getItem(i).getMatb());
-//                Toast.makeText(ChitietsudungPhongActivity.this, selectedThietBi.getTentb(), Toast.LENGTH_SHORT).show();
                 hienThiDialogThietBi(chitietsudungAdapter.getItem(i));
 
 
+            }
+        });
+
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hienThiManHinhTimThietBi();
             }
         });
 
@@ -62,14 +80,13 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void getThietBiByMa(String matb) {
-        for (int i = 0; i < arrayThietbi.size(); i ++) {
-            System.out.println(matb + ": " + arrayThietbi.get(i).getMatb());
-            if (arrayThietbi.get(i).getMatb().equals(matb)) {
-                selectedThietBi = arrayThietbi.get(i);
+        for (int i = 0; i < thietbiAdapter.getCount(); i ++) {
+            System.out.println(matb + ": " + thietbiAdapter.getItem(i).getMatb());
+            if (thietbiAdapter.getItem(i).getMatb().equals(matb)) {
+                selectedThietBi = thietbiAdapter.getItem(i);
             }
         }
     }
@@ -82,8 +99,9 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         txtMaP = (TextView) findViewById(R.id.txtMaPhong);
         txtLoaiP = (TextView) findViewById(R.id.txtLoaiPhong);
         txtTang = (TextView) findViewById(R.id.txtTang);
+        imgAdd = (ImageView) findViewById(R.id.imgAddEquipment);
         lvThietBi = (ListView) findViewById(R.id.lvThietBi);
-        arrayThietbi = new ArrayList<Thietbi>();
+        thietbiAdapter = new ArrayAdapter<Thietbi>(ChitietsudungPhongActivity.this, android.R.layout.simple_list_item_1);
 
 
         txtMaP.setText(phong.getMa());
@@ -91,11 +109,39 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         txtTang.setText(String.valueOf(phong.getTang()));
 
         chitietsudungAdapter = new ChitietThietBiPhongAdapter(ChitietsudungPhongActivity.this, R.layout.phong_custom_chitietsudung);
+        unusedThietbiAdapter = new ArrayAdapter<Thietbi>(ChitietsudungPhongActivity.this, android.R.layout.simple_list_item_1);
+        usedThietbi = new ArrayList<String>();
+
         lvThietBi.setAdapter(chitietsudungAdapter);
 
         getPhongHocChitietsudungFromDB(phong);
         getThietBiFromDB();
+        getUnusedThietBi();
 
+
+    }
+
+    private String removeLastCharacter(String str) {
+        String result = null;
+        if ((str != null) && (str.length() > 0)) {
+            result = str.substring(0, str.length() - 1);
+        }
+        return result;
+    }
+
+    private void getUnusedThietBi() {
+        MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
+        Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM THIETBI WHERE MATB NOT IN (" + removeLastCharacter(queryParamenter) + ")", usedThietbi.toArray(new String[usedThietbi.size()]));
+        unusedThietbiAdapter.clear();
+        while (cursor.moveToNext()) {
+            String maTb = cursor.getString(0);
+            String tentb = cursor.getString(1);
+            String xuatxu = cursor.getString(2);
+            String maloai = cursor.getString(3);
+            Thietbi tb = new Thietbi(maTb, tentb, xuatxu, maloai);
+            unusedThietbiAdapter.add(tb);
+        }
+        cursor.close();
 
     }
 
@@ -104,6 +150,8 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM CHITIETSUDUNG WHERE MAPHONG = ?", new String[]{phong.getMa()});
         chitietsudungAdapter.clear();
+        usedThietbi.clear();
+        queryParamenter = "";
         while (cursor.moveToNext()) {
             String map = cursor.getString(0);
             String matb = cursor.getString(1);
@@ -111,6 +159,8 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             String soluong = cursor.getString(3);
             Chitietsudung ct = new Chitietsudung(map, matb, ngaysd, soluong);
             chitietsudungAdapter.add(ct);
+            usedThietbi.add(matb);
+            queryParamenter += "?,";
         }
         cursor.close();
     }
@@ -118,24 +168,89 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
     private  void getThietBiFromDB() {
         MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM THIETBI", null);
-        arrayThietbi.clear();
+        thietbiAdapter.clear();
         while (cursor.moveToNext()) {
             String maTb = cursor.getString(0);
             String tentb = cursor.getString(1);
             String xuatxu = cursor.getString(2);
             String maloai = cursor.getString(3);
             Thietbi tb = new Thietbi(maTb, tentb, xuatxu, maloai);
-            arrayThietbi.add(tb);
+            thietbiAdapter.add(tb);
         }
         cursor.close();
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("Chọn hành động");
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.phong_context_menu, menu);
-        super.onCreateContextMenu(menu, v, menuInfo);
+    private void hienThiManHinhTimThietBi() {
+        final Dialog dialogThemThietBi = new Dialog(ChitietsudungPhongActivity.this);
+        dialogThemThietBi.setContentView(R.layout.dialog_phong_add_equipment);
+
+        final TextView txtMatb = (TextView) dialogThemThietBi.findViewById(R.id.txtMatb);
+        final TextView txtTentb = (TextView) dialogThemThietBi.findViewById(R.id.txtTentb);
+        final TextView txtXuatxu = (TextView) dialogThemThietBi.findViewById(R.id.txtXuatxu);
+        final TextView txtMaloai = (TextView) dialogThemThietBi.findViewById(R.id.txtMaloai);
+        final Button btnHuy = (Button) dialogThemThietBi.findViewById(R.id.btnHuy);
+        final EditText edtSoluong = dialogThemThietBi.findViewById(R.id.edtSoluong);
+        Button btnChon = (Button) dialogThemThietBi.findViewById(R.id.btnChon);
+        selectedUnusedThietbi = null;
+
+
+        MultiAutoCompleteTextView mactv;
+        mactv = (MultiAutoCompleteTextView)dialogThemThietBi.findViewById(R.id.multiAutoCompleteTextView1);
+        mactv.setAdapter(unusedThietbiAdapter);
+        mactv.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+        mactv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedUnusedThietbi = unusedThietbiAdapter.getItem(i);
+                txtMatb.setText(selectedUnusedThietbi.getMatb());
+                txtTentb.setText(selectedUnusedThietbi.getTentb());
+                txtXuatxu.setText(selectedUnusedThietbi.getXuatxu());
+                txtMaloai.setText(selectedUnusedThietbi.getMaloai());
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogThemThietBi.dismiss();
+            }
+        });
+
+        btnChon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedUnusedThietbi != null) {
+                    if (!edtSoluong.getText().toString().matches("")) {
+                        // tao ngay
+                        String pattern = "dd/MM/yyyy";
+                        String dateInString =new SimpleDateFormat(pattern).format(new Date());
+
+                        ContentValues values = new ContentValues();
+                        values.put("MAPHONG", phong.getMa());
+                        values.put("MATB", selectedUnusedThietbi.getMatb());
+                        values.put("NGAYSUDUNG", dateInString);
+                        values.put("SOLUONG", edtSoluong.getText().toString());
+                        long kq = MainActivity.database.insert("CHITIETSUDUNG", null, values);
+                        if (kq > 0) {
+                            getPhongHocChitietsudungFromDB(phong);
+                            getUnusedThietBi();
+                            Toast.makeText(ChitietsudungPhongActivity.this, "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
+                            dialogThemThietBi.dismiss();
+
+                        }
+                        dialogThemThietBi.dismiss();
+                    } else {
+                        Toast.makeText(ChitietsudungPhongActivity.this, "Vui lòng chọn số lượng", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ChitietsudungPhongActivity.this, "Vui lòng chọn thiết bị", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        dialogThemThietBi.show();
     }
 
     private void hienThiDialogThietBi(Chitietsudung ctsd) {
@@ -157,6 +272,14 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         txtNgaySuDung.setText(ctsd.getNgaysudung());
 
         dialogChitietThietBi.show();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.phong_context_menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
