@@ -64,6 +64,7 @@
             android:id="@+id/btnPhong" />
 
         <Button
+            android:onClick="thongTinPhanMem"
             android:text="Chi tiết phần mềm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

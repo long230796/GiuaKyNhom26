@@ -1,5 +1,6 @@
 package com.nhom26.giuakynhom26.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -89,5 +90,12 @@ public class MainActivity extends AppCompatActivity {
     public void quanLyPhong(View view) {
         Intent intent = new Intent(MainActivity.this, PhongActivity.class);
         startActivity(intent);
+    }
+
+    public void thongTinPhanMem(View view) {
+        Dialog dialogThongTinPhanMem = new Dialog(MainActivity.this);
+        dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
+
+        dialogThongTinPhanMem.show();
     }
 }
