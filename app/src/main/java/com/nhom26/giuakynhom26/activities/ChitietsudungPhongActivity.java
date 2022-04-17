@@ -278,17 +278,13 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         menu.setHeaderTitle("Chọn hành động");
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.phong_context_menu, menu);
+        inflater.inflate(R.menu.ctsd_context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mnuSua:
-                hienThiManHinhEditThietbi();
-                break;
-
             case R.id.mnuXoa:
                 hienThiManHinhXoaThietbi();
                 break;

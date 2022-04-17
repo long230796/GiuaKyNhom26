@@ -7,15 +7,9 @@
 
     <TextView
         android:text="Thông báo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/headerActivity"
         android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:background="@drawable/textview_border"
-        android:textSize="24sp"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="@android:color/black" />
+       />
 
     <LinearLayout
         android:orientation="vertical"
@@ -43,14 +37,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+
+            style="@style/footerDoubleButton">
 
             <Button
                 android:text="Có"
@@ -59,7 +47,7 @@
                 android:id="@+id/btnCo"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp" />
+                />
 
             <Button
                 android:text="Không"
@@ -67,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnKhong"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp" />
+                 />
         </LinearLayout>
 
 

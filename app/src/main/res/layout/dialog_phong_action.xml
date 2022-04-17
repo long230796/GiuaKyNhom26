@@ -7,15 +7,8 @@
 
     <TextView
         android:text="Thao tác"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:background="@drawable/textview_border"
-        android:textSize="24sp"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="@android:color/black" />
+        style="@style/headerActivity"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,7 +24,8 @@
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            style="@style/footerDoubleButton">
 
             <Button
                 android:text="Xóa"
@@ -40,7 +34,7 @@
                 android:id="@+id/btnXoa"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp" />
+                 />
 
             <Button
                 android:text="Sửa"
@@ -48,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnSua"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp" />
+                />
         </LinearLayout>
 
 

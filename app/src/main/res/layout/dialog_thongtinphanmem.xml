@@ -8,15 +8,8 @@
 
     <TextView
         android:text="Thông tin về phần mềm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:background="@drawable/textview_border"
-        android:textSize="24sp"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="@android:color/black" />
+       style="@style/headerActivity"/>
 
     <LinearLayout
         android:orientation="vertical"

@@ -9,15 +9,9 @@
 
     <TextView
         android:text="Thêm phòng"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/headerActivity"
         android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:background="@drawable/textview_border"
-        android:textSize="24sp"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="@android:color/black" />
+       />
 
     <LinearLayout
         android:orientation="vertical"
@@ -87,17 +81,8 @@
 
             <TextView
                 android:text="Thiết bị"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/textView"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:textStyle="normal|italic"
-                android:textColor="@android:color/black"
-                tools:textColor="@drawable/textview_border"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
-                android:textAllCaps="false" />
+                style="@style/footerTitle"/>
 
             <ImageView
                 android:layout_width="wrap_content"

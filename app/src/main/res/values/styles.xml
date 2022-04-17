@@ -8,4 +8,53 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="headerActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@drawable/textview_border</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingBottom">7dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="bodyTitle">
+        <item name="android:layout_width">127dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal|italic</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_gravity">left|center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="footerDoubleButton">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">248dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+
+    </style>
+
+
+
+    <style name="footerTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal|italic</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
 </resources>
