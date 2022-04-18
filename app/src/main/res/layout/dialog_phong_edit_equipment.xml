@@ -163,18 +163,15 @@
 
             <Button
                 android:text="Chọn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnChon"
-                android:layout_gravity="center"
-                android:layout_weight="1.01" />
+                android:background="@drawable/custom_button"
+                style="@style/button_default"/>
 
             <Button
                 android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnHuy"
-                android:layout_weight="1" />
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
         </LinearLayout>
 
 

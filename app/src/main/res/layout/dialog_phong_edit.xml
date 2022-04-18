@@ -106,18 +106,16 @@
             style="@style/footerDoubleButton">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnCapNhatPhong"
-                android:layout_weight="1"
-                android:text="Lưu" />
+                android:text="Lưu"
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
 
             <Button
                 android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnHuyCapNhatPhong"
-                android:layout_weight="1" />
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
         </LinearLayout>
 
 

@@ -42,20 +42,15 @@
 
             <Button
                 android:text="Có"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnCo"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
 
             <Button
                 android:text="Không"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnKhong"
-                android:layout_weight="1"
-                 />
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
         </LinearLayout>
 
 

@@ -19,7 +19,6 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="248dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
@@ -29,20 +28,14 @@
 
             <Button
                 android:text="Xóa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnXoa"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                 />
+                style="@style/button_default" />
 
             <Button
                 android:text="Sửa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnSua"
-                android:layout_weight="1"
-                />
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
         </LinearLayout>
 
 
