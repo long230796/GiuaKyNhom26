@@ -10,29 +10,8 @@ public class Thietbi implements Serializable {
     private String matb;
     private String tentb;
     private String xuatxu;
-    private Loai loai;
+    private String maLoai;
     private String soluong;
-
-
-
-//    public Thietbi(String matb, String tentb, String xuatxu, String maloai, String soluong) {
-//
-//        this.matb = matb;
-//        this.tentb = tentb;
-//        this.xuatxu = xuatxu;
-//        this.maloai = maloai;
-//        this.soluong = soluong;
-//    }
-
-    public Thietbi(String matb, String tentb, String xuatxu) {
-
-        this.matb = matb;
-        this.tentb = tentb;
-        this.xuatxu = xuatxu;
-    }
-
-    public Thietbi() {
-    }
 
     public String getMatb() {
         return matb;
@@ -42,20 +21,12 @@ public class Thietbi implements Serializable {
         this.matb = matb;
     }
 
-    public String getSoluong() {
-        return soluong;
+    public String getTentb() {
+        return tentb;
     }
 
-    public void setSoluong(String soluong) {
-        this.soluong = soluong;
-    }
-
-    public Loai getLoai() {
-        return loai;
-    }
-
-    public void setLoai(Loai loai) {
-        this.loai = loai;
+    public void setTentb(String tentb) {
+        this.tentb = tentb;
     }
 
     public String getXuatxu() {
@@ -66,12 +37,44 @@ public class Thietbi implements Serializable {
         this.xuatxu = xuatxu;
     }
 
-    public String getTentb() {
-        return tentb;
+    public String getMaLoai() {
+        return maLoai;
     }
 
-    public void setTentb(String tentb) {
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getSoluong() {
+        return soluong;
+    }
+
+    public void setSoluong(String soluong) {
+        this.soluong = soluong;
+    }
+
+    public Thietbi() {
+    }
+
+    public Thietbi(String matb, String tentb, String xuatxu, String maLoai) {
+        this.matb = matb;
         this.tentb = tentb;
+        this.xuatxu = xuatxu;
+        this.maLoai = maLoai;
+    }
+
+    public Thietbi(String matb, String tentb, String xuatxu, String maLoai, String soluong) {
+        this.matb = matb;
+        this.tentb = tentb;
+        this.xuatxu = xuatxu;
+        this.maLoai = maLoai;
+        this.soluong = soluong;
+    }
+
+    public Thietbi(String matb, String tentb, String xuatxu) {
+        this.matb = matb;
+        this.tentb = tentb;
+        this.xuatxu = xuatxu;
     }
 
     @Override

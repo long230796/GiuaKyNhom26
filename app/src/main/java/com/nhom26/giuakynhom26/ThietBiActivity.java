@@ -37,12 +37,11 @@ public class ThietBiActivity extends AppCompatActivity {
 
     Spinner spLoai;
     ArrayAdapter<Loai>loaiArrayAdapter;
+    Loai selectedLoai=null;
 
     TextView maTB;
     EditText edtTB;
     EditText edtXuatxu;
-
-    Loai selectedLoai=null;
 
     Button btnLuu;
     Button btnHuy;
@@ -52,7 +51,6 @@ public class ThietBiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thiet_bi);
         addControls();
-        getLoaiTBFromDB();
         getTBFromDB();
         addEvents();
         registerForContextMenu(lvTB);
@@ -90,8 +88,6 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void addControls() {
 
-
-
         lvTB = (ListView) findViewById(R.id.lvLoaiTB);
         tBAdapter = new ArrayAdapter<Thietbi>(ThietBiActivity.this, android.R.layout.simple_list_item_1);
         lvTB.setAdapter(tBAdapter);
@@ -122,15 +118,8 @@ public class ThietBiActivity extends AppCompatActivity {
             String ten = cursor.getString(1);
             String xuatxu = cursor.getString(2);
             String maloai = cursor.getString(3);
-
-            Thietbi thietbi = new Thietbi(ma, ten, xuatxu);
+            Thietbi thietbi = new Thietbi(ma, ten, xuatxu,maloai);
             tBAdapter.add(thietbi);
-//            for (int i = 0; i < loaiArrayAdapter.getCount(); i ++){
-//                if (loaiArrayAdapter.getItem(i).getMaLoai().equals(maloai)){
-//                    loaiArrayAdapter.getItem(i).setThietbi(tBAdapter);
-//                }
-//            }
-//            selectedLoai.getThietbi().add(thietbi);
         }
         cursor.close();
     }
@@ -180,20 +169,21 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
 
-    private void hienThiManHinhChiTiet() {
 
+    private void hienThiManHinhChiTiet(){
         dialogChitiet = new Dialog(ThietBiActivity.this);
         dialogChitiet.setContentView(R.layout.activity_tb_detail);
 
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaTBdetail);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtTenTBdetail);
         TextView txtXuatxu = dialogChitiet.findViewById(R.id.txtXuatXudetail);
-        TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
+//        TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
 
         txtMa.setText(selectedTB.getMatb());
         txtLoai.setText(selectedTB.getTentb());
         txtXuatxu.setText(selectedTB.getXuatxu());
-        txtLoaiTB.setText(selectedTB.getLoai().getTenLoai());
+//        txtLoaiTB.setText(findTenLoaiTB(selectedTB.getMaLoai()));
+
         dialogChitiet.show();
     }
 
@@ -287,7 +277,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void hienThiManHinhEditTB() {
         selectedLoai=null;
-
+        getLoaiTBFromDB();
         spLoai = (Spinner) findViewById(R.id.spLoaiTB);
         loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this,android.R.layout.simple_spinner_item);
         spLoai.setAdapter(loaiArrayAdapter);
@@ -416,5 +406,14 @@ public class ThietBiActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
-
+    public String findTenLoaiTB(String m){
+        getLoaiTBFromDB();
+        String tenLoai="";
+        for (int i = 0; i < loaiArrayAdapter.getCount(); i ++){
+            if (loaiArrayAdapter.getItem(i).getMaLoai().equals(m)){
+                   tenLoai=selectedLoai.getTenLoai();
+             }
+        }
+        return tenLoai;
+    }
 }

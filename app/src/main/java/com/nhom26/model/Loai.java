@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Loai implements Serializable {
     private String maLoai;
     private String tenLoai;
-    private ArrayList<Thietbi> thietbi = new ArrayList<>();
 
     public String getMaLoai() {
         return maLoai;
@@ -26,14 +25,6 @@ public class Loai implements Serializable {
 
     public void setTenLoai(String tenLoai) {
         this.tenLoai = tenLoai;
-    }
-
-    public ArrayList<Thietbi> getThietbi() {
-        return thietbi;
-    }
-
-    public void setThietbi(ArrayList<Thietbi> thietbi) {
-        this.thietbi = thietbi;
     }
 
     public Loai() {
