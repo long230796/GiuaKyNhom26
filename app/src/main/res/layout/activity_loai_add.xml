@@ -6,7 +6,7 @@
     android:layout_width="match_parent">
 
     <TextView
-        android:text="Sửa thông tin "
+        android:text="Thêm loại thiết bị"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -33,7 +33,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Mã phòng"
+                android:text="Mã loại"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtMaPhongUpdateView"
+                android:id="@+id/txtMaLoaiadd"
                 android:layout_weight="1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -57,7 +57,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Loại phòng"
+                android:text="Tên Loại thiết bị"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
@@ -68,34 +68,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/edtLoaiPhong"
-                android:layout_weight="1"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <TextView
-                android:text="Tầng"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView5"
-                android:textSize="14sp" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/edtTang"
+                android:id="@+id/edtLoaiadd"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
@@ -114,7 +87,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnCapNhatPhong"
+                android:id="@+id/btnThemLoai"
                 android:layout_weight="1"
                 android:text="Lưu" />
 
@@ -122,7 +95,7 @@
                 android:text="Hủy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnHuyCapNhatPhong"
+                android:id="@+id/btnHuyThemLoai"
                 android:layout_weight="1" />
         </LinearLayout>
 

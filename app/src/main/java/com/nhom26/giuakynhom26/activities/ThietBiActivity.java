@@ -1,4 +1,4 @@
-package com.nhom26.giuakynhom26;
+package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.giuakynhom26.*;
 import com.nhom26.model.Loai;
 import com.nhom26.model.Thietbi;
 
@@ -94,11 +95,12 @@ public class ThietBiActivity extends AppCompatActivity {
         imgThemTB = (ImageView) findViewById(R.id.imgThemTB);
 
 
+
     }
 
     private void getLoaiTBFromDB() {
-        MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM LOAITHIETBI", null);
+        com.nhom26.giuakynhom26.activities.MainActivity.database = openOrCreateDatabase(com.nhom26.giuakynhom26.activities.MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
+        Cursor cursor = com.nhom26.giuakynhom26.activities.MainActivity.database.rawQuery("SELECT * FROM LOAITHIETBI", null);
         loaiArrayAdapter.clear();
         while (cursor.moveToNext()) {
             String ma = cursor.getString(0);
@@ -110,8 +112,8 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     private void getTBFromDB() {
-        MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM THIETBI", null);
+        com.nhom26.giuakynhom26.activities.MainActivity.database = openOrCreateDatabase(com.nhom26.giuakynhom26.activities.MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
+        Cursor cursor = com.nhom26.giuakynhom26.activities.MainActivity.database.rawQuery("SELECT * FROM THIETBI", null);
         tBAdapter.clear();
         while (cursor.moveToNext()) {
             String ma = cursor.getString(0);
@@ -177,19 +179,19 @@ public class ThietBiActivity extends AppCompatActivity {
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaTBdetail);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtTenTBdetail);
         TextView txtXuatxu = dialogChitiet.findViewById(R.id.txtXuatXudetail);
-//        TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
+        TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
 
         txtMa.setText(selectedTB.getMatb());
         txtLoai.setText(selectedTB.getTentb());
         txtXuatxu.setText(selectedTB.getXuatxu());
-//        txtLoaiTB.setText(findTenLoaiTB(selectedTB.getMaLoai()));
+        txtLoaiTB.setText(findTenLoaiTB(selectedTB.getMaLoai()));
 
         dialogChitiet.show();
     }
 
     private void hienThiManHinhThaoTacLoai() {
         dialogThaoTac = new Dialog(ThietBiActivity.this);
-        dialogThaoTac.setContentView(R.layout.activity_phong_action);
+        dialogThaoTac.setContentView(R.layout.dialog_phong_action);
         dialogThaoTac.show();
     }
 
@@ -230,7 +232,6 @@ public class ThietBiActivity extends AppCompatActivity {
 //                    values.put("MAPHONG", "p" + String.valueOf(randomInt));
 //                    values.put("LOAIPHONG", edtLoaiPhong.getText().toString());
 //                    values.put("TANG", edtTang.getText().toString());
-//                    long kq = MainActivity.database.insert("PHONGHOC", null, values);
 //                    if (kq > 0) {
 //                        values.remove("LOAIPHONG");
 //                        values.remove("TANG");
@@ -276,26 +277,27 @@ public class ThietBiActivity extends AppCompatActivity {
 
 
     private void hienThiManHinhEditTB() {
-        selectedLoai=null;
-        getLoaiTBFromDB();
-        spLoai = (Spinner) findViewById(R.id.spLoaiTB);
-        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this,android.R.layout.simple_spinner_item);
-        spLoai.setAdapter(loaiArrayAdapter);
-
         dialogChinhSua = new Dialog(ThietBiActivity.this);
         dialogChinhSua.setContentView(R.layout.activity_tb_edit);
 
         maTB = (TextView) dialogChinhSua.findViewById(R.id.txtMaTBedit);
         edtTB = (EditText) dialogChinhSua.findViewById(R.id.edtTenTBedit);
         edtXuatxu = (EditText) dialogChinhSua.findViewById(R.id.edtXuatXuedit);
-        //maloai
+        spLoai = (Spinner) dialogChinhSua.findViewById(R.id.spLoaiTB);
+        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, android.R.layout.simple_spinner_item);
+        loaiArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_checked);
+        spLoai.setAdapter(loaiArrayAdapter);
+
+        selectedLoai=null;
+        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, android.R.layout.simple_list_item_1);
+        getLoaiTBFromDB();
+
         btnLuu = (Button) dialogChinhSua.findViewById(R.id.btnCapNhatLoai);
         btnHuy = (Button) dialogChinhSua.findViewById(R.id.btnHuyCapNhatLoai);
 
         maTB.setText(selectedTB.getMatb());
         edtTB.setText(selectedTB.getTentb());
         edtXuatxu.setText(selectedTB.getXuatxu());
-
         spLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -329,7 +331,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void hienThiManHinhXoaTB() {
         dialogXoa = new Dialog(ThietBiActivity.this);
-        dialogXoa.setContentView(R.layout.activity_phong_delete);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
 
         Button btnCo = dialogXoa.findViewById(R.id.btnCo);
         Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
@@ -364,7 +366,7 @@ public class ThietBiActivity extends AppCompatActivity {
         values.put("MALOAI", selectedLoai.getMaLoai().toString());
         //maloai
 
-        int kq = MainActivity.database.update("THIETBI", values, "MATB=?", new String[]{maTB.getText().toString()});
+        int kq = com.nhom26.giuakynhom26.activities.MainActivity.database.update("THIETBI", values, "MATB=?", new String[]{maTB.getText().toString()});
         if (kq > 0) {
             Toast.makeText(ThietBiActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
             dialogChinhSua.dismiss();
@@ -375,7 +377,7 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     private void delete() {
-        int kq = MainActivity.database.delete("THIETBI", "MATB=?", new String[]{selectedTB.getMatb()});
+        int kq = com.nhom26.giuakynhom26.activities.MainActivity.database.delete("THIETBI", "MATB=?", new String[]{selectedTB.getMatb()});
         if (kq > 0) {
             Toast.makeText(ThietBiActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
             dialogXoa.dismiss();
@@ -407,11 +409,14 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     public String findTenLoaiTB(String m){
+        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, android.R.layout.simple_list_item_1);
         getLoaiTBFromDB();
         String tenLoai="";
         for (int i = 0; i < loaiArrayAdapter.getCount(); i ++){
+            System.out.println(m + ":" + loaiArrayAdapter.getItem(i).getMaLoai());
             if (loaiArrayAdapter.getItem(i).getMaLoai().equals(m)){
-                   tenLoai=selectedLoai.getTenLoai();
+                   tenLoai=loaiArrayAdapter.getItem(i).getTenLoai();
+                break;
              }
         }
         return tenLoai;

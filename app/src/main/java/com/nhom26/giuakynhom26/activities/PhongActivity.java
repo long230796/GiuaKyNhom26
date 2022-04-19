@@ -1,7 +1,8 @@
-package com.nhom26.giuakynhom26;
+package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.adapter.SelectedThietBiAdapter;
+import com.nhom26.giuakynhom26.R;
 import com.nhom26.giuakynhom26.dialog.DialogThemPhong;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
@@ -174,6 +176,7 @@ public class PhongActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.phong_context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -182,22 +185,33 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhChiTiet() {
         dialogChitiet = new Dialog(PhongActivity.this);
-        dialogChitiet.setContentView(R.layout.activity_phong_detail);
+        dialogChitiet.setContentView(R.layout.dialog_phong_detail);
 
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaPhong);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtLoaiPhong);
         TextView txtTang = dialogChitiet.findViewById(R.id.txtTang);
+        Button btnChitietsudung = dialogChitiet.findViewById(R.id.btnChiTietSuDung);
 
         txtMa.setText(selectedPhong.getMa());
         txtLoai.setText(selectedPhong.getLoai());
         txtTang.setText(String.valueOf(selectedPhong.getTang()));
+
+        btnChitietsudung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PhongActivity.this, ChitietsudungPhongActivity.class);
+                intent.putExtra("phong", selectedPhong);
+
+                startActivity(intent);
+            };
+        });
 
         dialogChitiet.show();
     }
 
     private void hienThiManHinhThaoTac() {
         dialogThaoTac = new Dialog(PhongActivity.this);
-        dialogThaoTac.setContentView(R.layout.activity_phong_action);
+        dialogThaoTac.setContentView(R.layout.dialog_phong_action);
         dialogThaoTac.show();
     }
 
@@ -260,8 +274,6 @@ public class PhongActivity extends AppCompatActivity {
                         Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
                     }
 
-                    Toast.makeText(PhongActivity.this, "finish", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(PhongActivity.this, "Vui lòng điền đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
@@ -286,7 +298,7 @@ public class PhongActivity extends AppCompatActivity {
     private void hienThiManHinhTimThietBi() {
 
         dialogThemThietBi = new Dialog(PhongActivity.this);
-        dialogThemThietBi.setContentView(R.layout.activity_phong_add_equipment);
+        dialogThemThietBi.setContentView(R.layout.dialog_phong_add_equipment);
 
         final TextView txtMatb = (TextView) dialogThemThietBi.findViewById(R.id.txtMatb);
         final TextView txtTentb = (TextView) dialogThemThietBi.findViewById(R.id.txtTentb);
@@ -350,7 +362,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhEditPhong() {
         dialogChinhSua = new Dialog(PhongActivity.this);
-        dialogChinhSua.setContentView(R.layout.activity_phong_edit);
+        dialogChinhSua.setContentView(R.layout.dialog_phong_edit);
 
         edtLoaiPhong = (EditText) dialogChinhSua.findViewById(R.id.edtLoaiPhong);
         edtTang = (EditText) dialogChinhSua.findViewById(R.id.edtTang);
@@ -366,8 +378,6 @@ public class PhongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update();
-//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -383,7 +393,7 @@ public class PhongActivity extends AppCompatActivity {
 
     private void hienThiManHinhXoaPhong() {
         dialogXoa = new Dialog(PhongActivity.this);
-        dialogXoa.setContentView(R.layout.activity_phong_delete);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
 
         Button btnCo = dialogXoa.findViewById(R.id.btnCo);
         Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);

@@ -7,7 +7,7 @@
     android:layout_width="match_parent">
 
     <TextView
-        android:text="Chỉnh sửa số lượng"
+        android:text="Chi tiết thiết bị"
         android:id="@+id/textView2"
         style="@style/headerActivity"/>
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
                 android:textSize="14sp"
-                android:layout_width="60dp" />
+                android:layout_width="90dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
                 android:textSize="14sp"
-                android:layout_width="60dp" />
+                android:layout_width="90dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textSize="14sp"
-                android:layout_width="60dp" />
+                android:layout_width="90dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textSize="14sp"
-                android:layout_width="60dp" />
+                android:layout_width="90dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,46 +132,51 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="0.04"
-            android:layout_marginTop="10dp">
+            android:layout_marginRight="20dp">
 
             <TextView
                 android:text="Số lượng"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textSize="14sp"
-                android:paddingBottom="10dp"
-                android:layout_width="60dp" />
+                android:layout_width="90dp" />
 
-            <EditText
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/edtSoluong"
+                android:id="@+id/txtSoluong"
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp">
 
-            style="@style/footerDoubleButton">
+            <TextView
+                android:text="Ngày sử dụng"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:textSize="14sp"
+                android:layout_width="90dp" />
 
-            <Button
-                android:text="Chọn"
-                android:id="@+id/btnChon"
-                android:background="@drawable/custom_button"
-                style="@style/button_default"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtNgaySuDung"
+                android:layout_weight="1"
+                android:textSize="14sp" />
 
-            <Button
-                android:text="Hủy"
-                android:id="@+id/btnHuy"
-                android:background="@drawable/custom_button"
-                style="@style/button_default" />
         </LinearLayout>
 
 

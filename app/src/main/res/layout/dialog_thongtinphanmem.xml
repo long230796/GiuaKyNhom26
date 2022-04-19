@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:text="Thông tin về phần mềm"
+        android:id="@+id/textView2"
+       style="@style/headerActivity"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/textview_border"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="0.05"
+            android:layout_marginTop="20dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_extension_black_24dp"
+                android:id="@+id/imageView2"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Chi tiết"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textSize="16sp"
+            android:textColor="@android:color/background_dark"
+            android:textAlignment="center" />
+
+        <TextView
+            android:text=
+                "Phần mềm quản lý thiết bị phòng học là phần mềm giúp thống kê, quản lý số lượng thiết bị, quản lý phòng học, quản lý loại thiết bị, giúp cho việc thống kê, kiểm tra được dễ dàng và thuận tiện hơn.\n\n
+Trình bày: Nhóm 26\n
+Thành viên:\n
+       \tHồ Đức Hoàng - N18DCAT024\n
+       \tLê Nhựt Quang - N18DCAT062\n
+       \tPhan Văn Cảnh - N18DCAT008\n
+       \tNguyễn Hoàng Long - N18DCAT044\n
+
+            "
+            android:layout_width="match_parent"
+            android:layout_height="387dp"
+            android:id="@+id/textView7"
+            android:paddingTop="30dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:elevation="1dp" />
+    </LinearLayout>
+
+</LinearLayout>
+

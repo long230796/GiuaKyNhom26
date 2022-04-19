@@ -1,4 +1,4 @@
-package com.nhom26.giuakynhom26;
+package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nhom26.giuakynhom26.*;
 import com.nhom26.model.Loai;
 
 public class LoaiTBActivity extends AppCompatActivity {
@@ -27,10 +29,10 @@ public class LoaiTBActivity extends AppCompatActivity {
     ArrayAdapter<Loai> loaiAdapter;
     Loai selectedLoai = null;
     Dialog dialogThaoTac;
+    Dialog dialogThem;
     Dialog dialogChinhSua;
     Dialog dialogChitiet;
     Dialog dialogXoa;
-//    Dialog dialogThemLoai;
 
     EditText edtLoaiTB;
     TextView maLoai;
@@ -66,12 +68,12 @@ public class LoaiTBActivity extends AppCompatActivity {
             }
         });
 
-//        imgThemLoaiTB.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                hienThiManHinhThemLoai();
-//            }
-//        });
+        imgThemLoaiTB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hienThiManHinhThemLoai();
+            }
+        });
 
 
     }
@@ -88,8 +90,8 @@ public class LoaiTBActivity extends AppCompatActivity {
     }
 
     private void getLoaiTBFromDB() {
-        MainActivity.database = openOrCreateDatabase(MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM LOAITHIETBI", null);
+        com.nhom26.giuakynhom26.activities.MainActivity.database = openOrCreateDatabase(com.nhom26.giuakynhom26.activities.MainActivity.DATABASE_NAME, MODE_PRIVATE, null);
+        Cursor cursor = com.nhom26.giuakynhom26.activities.MainActivity.database.rawQuery("SELECT * FROM LOAITHIETBI", null);
         loaiAdapter.clear();
         while (cursor.moveToNext()) {
             String ma = cursor.getString(0);
@@ -160,90 +162,40 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     private void hienThiManHinhThaoTacLoai() {
         dialogThaoTac = new Dialog(LoaiTBActivity.this);
-        dialogThaoTac.setContentView(R.layout.activity_phong_action);
+        dialogThaoTac.setContentView(R.layout.dialog_phong_action);
         dialogThaoTac.show();
     }
 
-//    private void hienThiManHinhThemLoai() {
-//        dialogThemLoai = new DialogThemPhong(LoaiTBActivity.this);
-//
-//        Button btnLuuPhong = dialogThemPhong.findViewById(R.id.btnLuuPhong);
-//        Button btnHuyPhong = dialogThemPhong.findViewById(R.id.btnHuyPhong);
-//        final EditText edtLoaiPhong = dialogThemPhong.findViewById(R.id.edtLoaiPhong);
-//        final EditText edtTang = dialogThemPhong.findViewById(R.id.edtTang);
-//
-//
-//        imgThemThietBi = dialogThemPhong.findViewById(R.id.imgAddEquipment);
-//        imgThemThietBi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                hienThiManHinhTimThietBi();
-//            }
-//        });
-//
-//        registerForContextMenu(lvThietBi);
-//
-//        btnLuuPhong.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (edtLoaiPhong.getText() != null && edtTang != null) {
-//                    // tao maphong
-//                    Random r = new Random();
-//                    int randomInt = r.nextInt(10000) + 1;
-//
-//                    // tao ngay
-//                    String pattern = "dd/MM/yyyy";
-//                    String dateInString =new SimpleDateFormat(pattern).format(new Date());
-//
-//
-//                    // them phong
-//                    ContentValues values = new ContentValues();
-//                    values.put("MAPHONG", "p" + String.valueOf(randomInt));
-//                    values.put("LOAIPHONG", edtLoaiPhong.getText().toString());
-//                    values.put("TANG", edtTang.getText().toString());
-//                    long kq = MainActivity.database.insert("PHONGHOC", null, values);
-//                    if (kq > 0) {
-//                        values.remove("LOAIPHONG");
-//                        values.remove("TANG");
-//                        long ok = 0;
-//                        for (int i = 0; i < selectedThietbiAdapter.getCount(); i ++) {
-//                            values.put("MATB", selectedThietbiAdapter.getItem(i).getMatb());
-//                            values.put("SOLUONG", selectedThietbiAdapter.getItem(i).getSoluong());
-//                            values.put("NGAYSUDUNG", dateInString);
-//                            ok = MainActivity.database.insert("CHITIETSUDUNG", null, values);
-//                            if (ok <= 0) {
-//                                Toast.makeText(PhongActivity.this, "Không thể thêm chi tiết sử dụng, thiết bị: " + selectedThietbiAdapter.getItem(i).getMatb() , Toast.LENGTH_SHORT).show();
-//                                break;
-//                            }
-//                        }
-//                        Toast.makeText(PhongActivity.this, "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
-//                        dialogThemPhong.dismiss();
-//                        getPhongHocFromDB();
-//                    } else {
-//                        Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    Toast.makeText(PhongActivity.this, "finish", Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//                    Toast.makeText(PhongActivity.this, "Vui lòng điền đủ thông tin", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//        btnHuyPhong.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // reset thietbiAdapter
-//                thietBiAdapter = null;
-//                dialogThemPhong.dismiss();
-//            }
-//        });
-//
-//        dialogThemPhong.show();
-//    }
+    private void hienThiManHinhThemLoai() {
+        dialogThem = new Dialog(LoaiTBActivity.this);
+        dialogThem.setContentView(R.layout.activity_loai_add);
 
+        edtLoaiTB = (EditText) dialogThem.findViewById(R.id.edtLoaiadd);
+        maLoai = (TextView) dialogThem.findViewById(R.id.txtMaLoaiadd);
+        btnLuu = (Button) dialogThem.findViewById(R.id.btnThemLoai);
+        btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemLoai);
 
+        maLoai.setText(selectedLoai.getMaLoai());
+        edtLoaiTB.setText(selectedLoai.getTenLoai());
+
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                add();
+//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel(dialogChinhSua);
+            }
+        });
+
+        dialogChinhSua.show();
+    }
 
 
     private void hienThiManHinhEditLoai() {
@@ -279,7 +231,7 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     private void hienThiManHinhXoaLoai() {
         dialogXoa = new Dialog(LoaiTBActivity.this);
-        dialogXoa.setContentView(R.layout.activity_phong_delete);
+        dialogXoa.setContentView(R.layout.dialog_phong_delete);
 
         Button btnCo = dialogXoa.findViewById(R.id.btnCo);
         Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
@@ -309,7 +261,7 @@ public class LoaiTBActivity extends AppCompatActivity {
         values.put("MALOAI", maLoai.getText().toString());
         values.put("TENLOAI", edtLoaiTB.getText().toString());
 
-        int kq = MainActivity.database.update("LOAITHIETBI", values, "MALOAI=?", new String[]{maLoai.getText().toString()});
+        int kq = com.nhom26.giuakynhom26.activities.MainActivity.database.update("LOAITHIETBI", values, "MALOAI=?", new String[]{maLoai.getText().toString()});
         if (kq > 0) {
             Toast.makeText(LoaiTBActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
             dialogChinhSua.dismiss();
@@ -319,8 +271,24 @@ public class LoaiTBActivity extends AppCompatActivity {
         }
     }
 
+    private void add () {
+
+        ContentValues values = new ContentValues();
+        values.put("MALOAI", maLoai.getText().toString());
+        values.put("TENLOAI", edtLoaiTB.getText().toString());
+
+        int kq = (int) MainActivity.database.insert("LOAITHIETBI",null, values);
+        if (kq > 0) {
+            Toast.makeText(LoaiTBActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
+            dialogChinhSua.dismiss();
+            getLoaiTBFromDB();
+        } else {
+            Toast.makeText(LoaiTBActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void delete() {
-        int kq = MainActivity.database.delete("LOAITHIETBI", "MALOAI=?", new String[]{selectedLoai.getMaLoai()});
+        int kq = com.nhom26.giuakynhom26.activities.MainActivity.database.delete("LOAITHIETBI", "MALOAI=?", new String[]{selectedLoai.getMaLoai()});
         if (kq > 0) {
             Toast.makeText(LoaiTBActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
             dialogXoa.dismiss();

@@ -7,19 +7,25 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity" android:label=" ">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".PhongActivity"
+            android:name=".activities.PhongActivity"
             android:label="@string/phong_name" />
-        <activity android:name=".LoaiTBActivity" />
-        <activity android:name=".ThietBiActivity" />
-        <activity android:name=".ChiTietSuDungActivity"></activity>
+        <activity android:name=".activities.LoaiTBActivity" />
+        <activity android:name=".activities.ThietBiActivity" />
+        <activity
+            android:name=".activities.PhongActivity"
+            android:label="@string/phong_name" />
+        <activity
+            android:name=".activities.ChitietsudungPhongActivity"
+            android:label="Chi tiết sử dụng">
+
+        </activity>
     </application>
 
 </manifest>
