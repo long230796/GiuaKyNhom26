@@ -2,17 +2,29 @@ package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.giuakynhom26.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     TextView programName;
     ImageView mainImage;
     Button btnLoai, btnPhong, btnThietbi, btnChitiet;
+
+    String sharePreferenceName = "trangthai";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         btnPhong = (Button) findViewById(R.id.btnPhong );
         btnThietbi = (Button) findViewById(R.id.btnThietbi );
         btnChitiet = (Button) findViewById(R.id.btnChitiet );
+
+        docSharedPreferences();
     }
 
     public void quanLyPhong(View view) {
@@ -97,5 +114,166 @@ public class MainActivity extends AppCompatActivity {
         dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
 
         dialogThongTinPhanMem.show();
+    }
+
+
+    private void docSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String imageString = preferences.getString("imageString", "");
+        String title = preferences.getString("programeName", "");
+
+        if (imageString.matches("") && title.matches("")) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+            String tempString = BitMapToString(bitmap);
+            luuImageSharedPreferences(tempString);
+            luuTitleSharedPreferences("Chương trình quản lý thiết bị phòng học");
+            docImageSharedPreferences();
+            docTitleSharedPreferences();
+
+        } else if (imageString.matches("") && !title.matches("")) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+            String tempString = BitMapToString(bitmap);
+            luuImageSharedPreferences(tempString);
+            docImageSharedPreferences();
+            programName.setText(title);
+
+        } else if (!imageString.matches("") && title.matches("")) {
+            luuTitleSharedPreferences("Chương trình quản lý thiết bị phòng học");
+            docTitleSharedPreferences();
+            mainImage.setImageBitmap(StringToBitMap(imageString));
+
+        } else {
+            programName.setText(title);
+            mainImage.setImageBitmap(StringToBitMap(imageString));
+
+        }
+
+
+    }
+
+    private void docImageSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String imageString = preferences.getString("imageString", "");
+        Bitmap hinh = StringToBitMap(imageString);
+        mainImage.setImageBitmap(hinh);
+    }
+
+    private void docTitleSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        programName.setText(preferences.getString("programeName", ""));
+    }
+
+
+    private void luuTitleSharedPreferences(String title) {
+        SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("programeName", title);
+        editor.commit();
+    }
+
+    private void luuImageSharedPreferences(String imageName) {
+        SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("imageString", imageName);
+        editor.commit();
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_edit_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnuEditTitle:
+                final Dialog dialogMainEditTitle = new Dialog(MainActivity.this);
+                dialogMainEditTitle.setContentView(R.layout.dialog_main_title_edit);
+                dialogMainEditTitle.show();
+
+                final EditText edtTitle = dialogMainEditTitle.findViewById(R.id.edtTitle);
+                Button btnLuu = dialogMainEditTitle.findViewById(R.id.btnLuu);
+                Button btnHuy = dialogMainEditTitle.findViewById(R.id.btnHuy);
+
+                btnLuu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!edtTitle.getText().toString().matches("")) {
+                            luuTitleSharedPreferences(edtTitle.getText().toString());
+                            docTitleSharedPreferences();
+                            dialogMainEditTitle.dismiss();
+                            Toast.makeText(MainActivity.this, "Sửa tiêu đề thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Vui Lòng nhập tiêu đề", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                btnHuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialogMainEditTitle.dismiss();
+                    }
+                });
+                break;
+            case R.id.mnuChangeImage:
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent.createChooser(intent, "Chon Hinh"), 113);
+
+                break;
+
+            case R.id.mnuDefault:
+                SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+                String tempString = BitMapToString(bitmap);
+                luuImageSharedPreferences(tempString);
+                luuTitleSharedPreferences("Chương trình quản lý thiết bị phòng học");
+                docImageSharedPreferences();
+                docTitleSharedPreferences();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 113 && resultCode == RESULT_OK) {
+            try {
+                Uri imgURI = data.getData();
+                Bitmap hinh = MediaStore.Images.Media.getBitmap(getContentResolver(), imgURI);
+                String imageString = BitMapToString(hinh);
+                luuImageSharedPreferences(imageString);
+                docImageSharedPreferences();
+            } catch (Exception ex) {
+                Log.e("loi: ", ex.toString());
+            }
+        }
     }
 }
