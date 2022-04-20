@@ -126,7 +126,18 @@
         android:background="@drawable/border_right_left_top"
         android:layout_width="match_parent"
         android:id="@+id/lvThietBi"
-        android:layout_height="280dp" />
+        android:layout_height="250dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.98"
+        android:layout_height="10dp"
+        android:background="@drawable/border_right_left_bottom"
+        android:gravity="right">
+
+    </LinearLayout>
 
 
 </LinearLayout>
