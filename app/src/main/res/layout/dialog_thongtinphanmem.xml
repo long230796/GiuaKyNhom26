@@ -57,14 +57,30 @@ Thành viên:\n
 
             "
             android:layout_width="match_parent"
-            android:layout_height="387dp"
+            android:layout_height="298dp"
             android:id="@+id/textView7"
             android:paddingTop="30dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:elevation="1dp" />
+            android:elevation="1dp"
+            android:layout_weight="0.68" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="51dp"
+            style="@style/footerDoubleButton">
+
+            <Button
+                android:text="Liên hệ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLienHe"
+                android:layout_weight="1"
+                style="@style/button_default" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
