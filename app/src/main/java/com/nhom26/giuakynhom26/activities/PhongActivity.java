@@ -327,7 +327,7 @@ public class PhongActivity extends AppCompatActivity {
                 txtMatb.setText(selectedThietBi.getMatb());
                 txtTentb.setText(selectedThietBi.getTentb());
                 txtXuatxu.setText(selectedThietBi.getXuatxu());
-//                txtMaloai.setText(selectedThietBi.getMaloai());
+                txtMaloai.setText(selectedThietBi.getMaLoai());
             }
         });
 

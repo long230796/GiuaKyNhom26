@@ -35,6 +35,7 @@ public class LoaiTBActivity extends AppCompatActivity {
     Dialog dialogXoa;
 
     EditText edtLoaiTB;
+    EditText edtMaLoai;
     TextView maLoai;
     Button btnLuu;
     Button btnHuy;
@@ -171,12 +172,9 @@ public class LoaiTBActivity extends AppCompatActivity {
         dialogThem.setContentView(R.layout.activity_loai_add);
 
         edtLoaiTB = (EditText) dialogThem.findViewById(R.id.edtLoaiadd);
-        maLoai = (TextView) dialogThem.findViewById(R.id.txtMaLoaiadd);
+        edtMaLoai=(EditText) dialogThem.findViewById(R.id.edtMaLoaiadd);
         btnLuu = (Button) dialogThem.findViewById(R.id.btnThemLoai);
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemLoai);
-
-        maLoai.setText(selectedLoai.getMaLoai());
-        edtLoaiTB.setText(selectedLoai.getTenLoai());
 
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +192,7 @@ public class LoaiTBActivity extends AppCompatActivity {
             }
         });
 
-        dialogChinhSua.show();
+        dialogThem.show();
     }
 
 
@@ -274,13 +272,13 @@ public class LoaiTBActivity extends AppCompatActivity {
     private void add () {
 
         ContentValues values = new ContentValues();
-        values.put("MALOAI", maLoai.getText().toString());
+        values.put("MALOAI", edtMaLoai.getText().toString());
         values.put("TENLOAI", edtLoaiTB.getText().toString());
 
         int kq = (int) MainActivity.database.insert("LOAITHIETBI",null, values);
         if (kq > 0) {
             Toast.makeText(LoaiTBActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
-            dialogChinhSua.dismiss();
+            dialogThem.dismiss();
             getLoaiTBFromDB();
         } else {
             Toast.makeText(LoaiTBActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();

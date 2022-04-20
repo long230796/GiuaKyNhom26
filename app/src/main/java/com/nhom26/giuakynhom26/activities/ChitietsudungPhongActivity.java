@@ -487,7 +487,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(15);
             title.setColor(ContextCompat.getColor(this, android.R.color.black));
-            canvas.drawText(selectedThietBi.getMaloai(),430 , heightItem, title);
+            canvas.drawText(selectedThietBi.getMaLoai(),430 , heightItem, title);
 
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(15);
