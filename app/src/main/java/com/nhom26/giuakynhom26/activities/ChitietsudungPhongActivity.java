@@ -3,10 +3,19 @@ package com.nhom26.giuakynhom26.activities;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,10 +35,16 @@ import com.nhom26.model.Chitietsudung;
 import com.nhom26.model.Phong;
 import com.nhom26.model.Thietbi;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class ChitietsudungPhongActivity extends AppCompatActivity {
 
@@ -72,6 +87,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             }
         });
 
+
         lvThietBi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,6 +97,8 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     private void getThietBiByMa(String matb) {
         for (int i = 0; i < thietbiAdapter.getCount(); i ++) {
@@ -317,6 +335,205 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         dialogXoa.show();
     }
 
+    private void hienThiDialogConfirmPdf() {
+        final Dialog dialogConfirmPdf = new Dialog(ChitietsudungPhongActivity.this);
+        dialogConfirmPdf.setContentView(R.layout.dialog_confirm_pdf);
+
+        Button btnXuat = dialogConfirmPdf.findViewById(R.id.btnXuat);
+        Button btnHuy = dialogConfirmPdf.findViewById(R.id.btnHuy);
+
+        btnXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                xuatPdf();
+                dialogConfirmPdf.dismiss();
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogConfirmPdf.dismiss();
+            }
+        });
+
+        dialogConfirmPdf.show();
+    }
+
+    private void xuatPdf() {
+        int pageHeight = 1280;
+        int pagewidth = 768;
+        final int PERMISSION_REQUEST_CODE = 200;
+
+        if (checkPermission()) {
+            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermission();
+        }
+
+        generatePDF(pagewidth, pageHeight);
+
+    }
+
+    private void generatePDF(int pagewidth, int pageHeight) {
+        PdfDocument pdfDocument = new PdfDocument();
+        Paint paint = new Paint();
+        Paint title = new Paint();
+        PdfDocument.PageInfo mypageInfo = new PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create();
+        PdfDocument.Page myPage = pdfDocument.startPage(mypageInfo);
+        Canvas canvas = myPage.getCanvas();
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(24);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        title.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("CHI TIẾT SỬ DỤNG", 384, 80, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        title.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText("PHÒNG",30 , 100, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Mã Phòng",60 , 130, title);
+
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Loại Phòng",60 , 160, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Tầng", 60, 190, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText(phong.getMa(),160 , 130, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText(phong.getLoai(),160 , 160, title);
+
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText(String.valueOf(phong.getTang()),160 , 190, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("THIẾT BỊ SỬ DỤNG",30 , 240, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Mã TB",30 , 270, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Tên TB",130 , 270, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Xuất xứ",320 , 270, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Mã loại",430 , 270, title);
+
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Số lượng",530 , 270, title);
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(15);
+        title.setColor(ContextCompat.getColor(this, android.R.color.black));
+        canvas.drawText("Ngày sử dụng",630 , 270, title);
+
+        int heightItem = 270;
+
+        for (int i = 0; i < chitietsudungAdapter.getCount(); i ++) {
+            heightItem += 30;
+            getThietBiByMa(chitietsudungAdapter.getItem(i).getMatb());
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(selectedThietBi.getMatb(),30 , heightItem, title);
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(selectedThietBi.getTentb(),130 , heightItem, title);
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(selectedThietBi.getXuatxu(),320 , heightItem, title);
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(selectedThietBi.getMaloai(),430 , heightItem, title);
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(chitietsudungAdapter.getItem(i).getSoluong(),530 , heightItem, title);
+
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(15);
+            title.setColor(ContextCompat.getColor(this, android.R.color.black));
+            canvas.drawText(chitietsudungAdapter.getItem(i).getNgaysudung(),630 , heightItem, title);
+        }
+
+        pdfDocument.finishPage(myPage);
+        File file = new File(Environment.getExternalStorageDirectory(), "GFG.pdf");
+
+        try {
+            // after creating a file name we will
+            // write our PDF file to that location.
+            pdfDocument.writeTo(new FileOutputStream(file));
+
+            // below line is to print toast message
+            // on completion of PDF generation.
+            Toast.makeText(ChitietsudungPhongActivity.this, "PDF file generated successfully.", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            // below line is used
+            // to handle error
+            e.printStackTrace();
+        }
+        // after storing our pdf to that
+        // location we are closing our PDF file.
+        pdfDocument.close();
+
+
+    }
+
+    private boolean checkPermission() {
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        // requesting permissions if not provided.
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 87);
+    }
+
     private void cancel(Dialog dialogXoa) {
         dialogXoa.dismiss();
     }
@@ -339,4 +556,43 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.ctsd_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnuPdf:
+                hienThiDialogConfirmPdf();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 87) {
+            if (grantResults.length > 0) {
+
+                // after requesting permissions we are showing
+                // users a toast message of permission granted.
+                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                if (writeStorage && readStorage) {
+                    Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        }
+    }
 }
+
+
