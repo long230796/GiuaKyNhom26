@@ -5,23 +5,23 @@
     android:weightSum="1"
     android:layout_width="match_parent">
 
-    <TextView
-        android:text="Thêm thiết bị"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:background="@drawable/textview_border"
-        android:textSize="24sp"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="@android:color/black" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/textview_border">
+
+        <TextView
+            android:text="Thêm thiết bị"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textAlignment="center"
+            android:background="@drawable/textview_border"
+            android:textSize="24sp"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:textColor="@android:color/black" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMaTBadd"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,10 +113,10 @@
 
             <TextView
                 android:text="Loại Thiết Bị"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView11"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="95dp" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -146,7 +147,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMaLoaiTBadd"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout

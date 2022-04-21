@@ -169,6 +169,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.phong_context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -211,7 +212,6 @@ public class ThietBiActivity extends AppCompatActivity {
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemTB);
         maTB = (TextView) dialogThem.findViewById(R.id.txtMaTBadd);
         edtTB =(EditText) dialogThem.findViewById(R.id.edtTenTBadd);
-        final Button btnLayMa = dialogThem.findViewById(R.id.btnLayMa);
         edtXuatxu =(EditText) dialogThem.findViewById(R.id.edtXuatXuadd);
         spLoai = (Spinner) dialogThem.findViewById(R.id.spLoaiTBadd);
         txtM = (TextView) dialogThem.findViewById(R.id.txtMaLoaiTBadd);

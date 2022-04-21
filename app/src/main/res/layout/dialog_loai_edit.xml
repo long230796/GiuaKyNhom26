@@ -6,7 +6,7 @@
     android:layout_width="match_parent">
 
     <TextView
-        android:text="Sửa thông tin loại thiết bị"
+        android:text="Sửa loại thiết bị"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -51,7 +51,7 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">

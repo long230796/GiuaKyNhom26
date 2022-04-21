@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMaTBedit"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,10 +112,10 @@
 
             <TextView
                 android:text="Loại Thiết Bị"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView11"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="95dp" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -147,7 +148,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtM"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout

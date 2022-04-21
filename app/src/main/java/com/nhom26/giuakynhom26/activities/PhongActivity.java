@@ -130,7 +130,7 @@ public class PhongActivity extends AppCompatActivity {
             String tentb = cursor.getString(1);
             String xuatxu = cursor.getString(2);
             String maloai = cursor.getString(3);
-            Thietbi tb = new Thietbi(matb, tentb, xuatxu);
+            Thietbi tb = new Thietbi(matb, tentb, xuatxu, maloai);
             adapter.add(tb);
         }
         cursor.close();

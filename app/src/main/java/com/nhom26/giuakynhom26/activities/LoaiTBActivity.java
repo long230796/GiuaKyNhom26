@@ -181,7 +181,6 @@ public class LoaiTBActivity extends AppCompatActivity {
         maLoai=(TextView) dialogThem.findViewById(R.id.txtMaLoaiadd);
         btnLuu = (Button) dialogThem.findViewById(R.id.btnThemLoai);
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemLoai);
-        Button btnLayMa = dialogThem.findViewById(R.id.btnLayMaLoai);
         maLoai.setText(layMa(edtLoaiTB.getText().toString())+String.valueOf(randomInt));
 
         btnLuu.setOnClickListener(new View.OnClickListener() {
