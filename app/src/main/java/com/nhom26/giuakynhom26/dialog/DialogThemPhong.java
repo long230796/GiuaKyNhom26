@@ -177,8 +177,8 @@ public class DialogThemPhong extends Dialog {
         btnKhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                cancel(dialogXoa);
                 Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
+                dialogXoa.dismiss();
 
             }
         });

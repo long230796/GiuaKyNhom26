@@ -237,41 +237,46 @@ public class PhongActivity extends AppCompatActivity {
         btnLuuPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edtLoaiPhong.getText() != null && edtTang != null) {
-                    // tao maphong
-                    Random r = new Random();
-                    int randomInt = r.nextInt(10000) + 1;
+                if (!edtLoaiPhong.getText().toString().matches("") && !edtTang.getText().toString().matches("")) {
+                    if (selectedThietbiAdapter.getCount() != 0) {
+                        // tao maphong
+                        Random r = new Random();
+                        int randomInt = r.nextInt(10000) + 1;
 
-                    // tao ngay
-                    String pattern = "dd/MM/yyyy";
-                    String dateInString =new SimpleDateFormat(pattern).format(new Date());
+                        // tao ngay
+                        String pattern = "dd/MM/yyyy";
+                        String dateInString =new SimpleDateFormat(pattern).format(new Date());
 
 
-                    // them phong
-                    ContentValues values = new ContentValues();
-                    values.put("MAPHONG", "p" + String.valueOf(randomInt));
-                    values.put("LOAIPHONG", edtLoaiPhong.getText().toString());
-                    values.put("TANG", edtTang.getText().toString());
-                    long kq = MainActivity.database.insert("PHONGHOC", null, values);
-                    if (kq > 0) {
-                        values.remove("LOAIPHONG");
-                        values.remove("TANG");
-                        long ok = 0;
-                        for (int i = 0; i < selectedThietbiAdapter.getCount(); i ++) {
-                            values.put("MATB", selectedThietbiAdapter.getItem(i).getMatb());
-                            values.put("SOLUONG", selectedThietbiAdapter.getItem(i).getSoluong());
-                            values.put("NGAYSUDUNG", dateInString);
-                            ok = MainActivity.database.insert("CHITIETSUDUNG", null, values);
-                            if (ok <= 0) {
-                                Toast.makeText(PhongActivity.this, "Không thể thêm chi tiết sử dụng, thiết bị: " + selectedThietbiAdapter.getItem(i).getMatb() , Toast.LENGTH_SHORT).show();
-                                break;
+                        // them phong
+                        ContentValues values = new ContentValues();
+                        values.put("MAPHONG", "p" + String.valueOf(randomInt));
+                        values.put("LOAIPHONG", edtLoaiPhong.getText().toString());
+                        values.put("TANG", edtTang.getText().toString());
+                        long kq = MainActivity.database.insert("PHONGHOC", null, values);
+                        if (kq > 0) {
+                            values.remove("LOAIPHONG");
+                            values.remove("TANG");
+                            long ok = 0;
+                            for (int i = 0; i < selectedThietbiAdapter.getCount(); i ++) {
+                                values.put("MATB", selectedThietbiAdapter.getItem(i).getMatb());
+                                values.put("SOLUONG", selectedThietbiAdapter.getItem(i).getSoluong());
+                                values.put("NGAYSUDUNG", dateInString);
+                                ok = MainActivity.database.insert("CHITIETSUDUNG", null, values);
+                                if (ok <= 0) {
+                                    Toast.makeText(PhongActivity.this, "Không thể thêm chi tiết sử dụng, thiết bị: " + selectedThietbiAdapter.getItem(i).getMatb() , Toast.LENGTH_SHORT).show();
+                                    break;
+                                }
                             }
-                       }
-                        Toast.makeText(PhongActivity.this, "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
-                        dialogThemPhong.dismiss();
-                        getPhongHocFromDB();
+                            Toast.makeText(PhongActivity.this, "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
+                            dialogThemPhong.dismiss();
+                            getPhongHocFromDB();
+                        } else {
+                            Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                        }
+
                     } else {
-                        Toast.makeText(PhongActivity.this, "Thêm phòng thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PhongActivity.this, "Vui lòng chọn thiết bị", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
