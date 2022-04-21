@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <item
         app:actionViewClass="android.support.v7.widget.SearchView"
         android:icon="@drawable/ic_search_black_24dp"
@@ -10,12 +12,25 @@
         app:showAsAction="always"
         android:id="@+id/mnuSearch"
         tools:ignore="AppCompatResource" />
-    <item android:title="Quản lý loại"
-        android:id="@+id/nmuLoai" />
-    <item android:title="Quản lý thiết bị"
-        android:id="@+id/mnuThietbi" />
-    <item android:title="Quản lý phòng"
-        android:id="@+id/mnuPhong" />
-    <item android:title="Thông tin phần mềm"
-        android:id="@+id/mnuChitiet" />
+    <item
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:orderInCategory="100"
+        android:title="Option Menu"
+        app:showAsAction="always">
+        <menu>
+            <item android:title="Quản lý loại"
+                android:icon="@drawable/ic_library_books_black_24dp"
+                android:id="@+id/mnuLoaiTb" />
+            <item android:title="Quản lý thiết bị"
+                android:icon="@drawable/ic_build_black_24dp"
+                android:id="@+id/mnuThietbi" />
+            <item android:title="Quản lý phòng"
+                android:icon="@drawable/ic_store_mall_directory_black_24dp"
+                android:id="@+id/mnuPhong" />
+            <item android:title="Phần mềm"
+                android:icon="@drawable/ic_info_black_24dp"
+                android:id="@+id/mnuChitiet" />
+        </menu>
+    </item>
+
 </menu>

@@ -2,6 +2,7 @@ package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -142,6 +143,39 @@ public class LoaiTBActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.mnuThietbi:
+                intent = new Intent(LoaiTBActivity.this, ThietBiActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.mnuPhong:
+                intent = new Intent(LoaiTBActivity.this, PhongActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.mnuChitiet:
+                Dialog dialogThongTinPhanMem = new Dialog(LoaiTBActivity.this);
+                dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
+
+                Button btnLienHe = dialogThongTinPhanMem.findViewById(R.id.btnLienHe);
+
+                btnLienHe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(LoaiTBActivity.this, SendMailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogThongTinPhanMem.show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         menu.setHeaderTitle("Chọn hành động");
@@ -149,6 +183,8 @@ public class LoaiTBActivity extends AppCompatActivity {
         inflater.inflate(R.menu.phong_context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
+
+
 
 
     private void hienThiManHinhChiTiet() {

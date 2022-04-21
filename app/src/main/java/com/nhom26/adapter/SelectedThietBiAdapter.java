@@ -39,7 +39,7 @@ public class SelectedThietBiAdapter extends ArrayAdapter<Thietbi> {
         ImageView imgDel = customView.findViewById(R.id.imgDeleteSelected);
 
         tb = getItem(position);
-        imgDel.setImageResource(R.drawable.ic_remove_circle_black_24dp);
+        imgDel.setImageResource(R.drawable.ic_info_black_24dp);
         txtTen.setText(tb.getTentb());
         txtSoluong.setText(tb.getSoluong());
 

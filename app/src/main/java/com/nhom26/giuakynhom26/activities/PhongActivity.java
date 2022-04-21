@@ -456,6 +456,39 @@ public class PhongActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.mnuThietbi:
+                intent = new Intent(PhongActivity.this, ThietBiActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.mnuChitiet:
+                Dialog dialogThongTinPhanMem = new Dialog(PhongActivity.this);
+                dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
+
+                Button btnLienHe = dialogThongTinPhanMem.findViewById(R.id.btnLienHe);
+
+                btnLienHe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(PhongActivity.this, SendMailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogThongTinPhanMem.show();
+                break;
+
+            case R.id.mnuLoaiTb:
+                intent = new Intent(PhongActivity.this, LoaiTBActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuSua:

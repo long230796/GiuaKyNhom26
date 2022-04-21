@@ -2,6 +2,7 @@ package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -165,6 +166,40 @@ public class ThietBiActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.mnuPhong:
+                intent = new Intent(ThietBiActivity.this, PhongActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.mnuChitiet:
+                Dialog dialogThongTinPhanMem = new Dialog(ThietBiActivity.this);
+                dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
+
+                Button btnLienHe = dialogThongTinPhanMem.findViewById(R.id.btnLienHe);
+
+                btnLienHe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ThietBiActivity.this, SendMailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogThongTinPhanMem.show();
+                break;
+
+            case R.id.mnuLoaiTb:
+                intent = new Intent(ThietBiActivity.this, LoaiTBActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
