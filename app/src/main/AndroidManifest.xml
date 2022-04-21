@@ -28,9 +28,7 @@
         <activity
             android:name=".activities.ThietBiActivity"
             android:label="Quản lí thiết bị"/>
-        <activity
-            android:name=".activities.PhongActivity"
-            android:label="@string/phong_name" />
+
         <activity
             android:name=".activities.ChitietsudungPhongActivity"
             android:label="Chi tiết sử dụng"></activity>

@@ -144,6 +144,7 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.phong_context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
