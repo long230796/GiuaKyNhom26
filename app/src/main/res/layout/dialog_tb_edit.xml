@@ -51,33 +51,33 @@
         android:orientation="horizontal"
         android:layout_width="248dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-        <TextView
-            android:text="Tên thiết bị"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            android:textSize="14sp" />
+            <TextView
+                android:text="Tên thiết bị"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="14sp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/edtTenTBedit"
-            android:layout_weight="1"
-            android:textSize="14sp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtTenTBedit"
+                android:layout_weight="1"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -104,7 +104,7 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -130,43 +130,39 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <TextView
+                android:text="Mã loại"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13" />
 
-                android:layout_width="match_parent"
+            <TextView
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtM"
                 android:layout_weight="1"
                 android:textSize="14sp" />
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            style="@style/footerDoubleButton">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnCapNhatLoai"
-                android:layout_weight="1"
+                style="@style/button_default"
                 android:text="Lưu" />
 
             <Button
                 android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/button_default"
                 android:id="@+id/btnHuyCapNhatLoai"
-                android:layout_weight="1" />
+                />
         </LinearLayout>
 
 
