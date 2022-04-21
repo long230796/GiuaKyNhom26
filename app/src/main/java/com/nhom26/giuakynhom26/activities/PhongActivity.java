@@ -130,7 +130,7 @@ public class PhongActivity extends AppCompatActivity {
             String tentb = cursor.getString(1);
             String xuatxu = cursor.getString(2);
             String maloai = cursor.getString(3);
-            Thietbi tb = new Thietbi(matb, tentb, xuatxu, maloai);
+            Thietbi tb = new Thietbi(matb, tentb, xuatxu);
             adapter.add(tb);
         }
         cursor.close();
@@ -327,7 +327,7 @@ public class PhongActivity extends AppCompatActivity {
                 txtMatb.setText(selectedThietBi.getMatb());
                 txtTentb.setText(selectedThietBi.getTentb());
                 txtXuatxu.setText(selectedThietBi.getXuatxu());
-                txtMaloai.setText(selectedThietBi.getMaloai());
+                txtMaloai.setText(selectedThietBi.getMaLoai());
             }
         });
 

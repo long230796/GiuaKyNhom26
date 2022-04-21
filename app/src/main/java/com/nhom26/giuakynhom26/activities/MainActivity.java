@@ -109,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void quanLyThietBi(View view) {
+        Intent intent = new Intent(com.nhom26.giuakynhom26.activities.MainActivity.this, ThietBiActivity.class);
+        startActivity(intent);
+    }
+
+    public void quanLyLoai(View view) {
+        Intent intent = new Intent(com.nhom26.giuakynhom26.activities.MainActivity.this, LoaiTBActivity.class);
+        startActivity(intent);
+    }
+
     public void thongTinPhanMem(View view) {
         Dialog dialogThongTinPhanMem = new Dialog(MainActivity.this);
         dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);

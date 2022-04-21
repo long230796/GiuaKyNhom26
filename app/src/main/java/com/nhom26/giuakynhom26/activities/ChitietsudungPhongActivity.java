@@ -224,7 +224,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
                 txtMatb.setText(selectedUnusedThietbi.getMatb());
                 txtTentb.setText(selectedUnusedThietbi.getTentb());
                 txtXuatxu.setText(selectedUnusedThietbi.getXuatxu());
-                txtMaloai.setText(selectedUnusedThietbi.getMaloai());
+                txtMaloai.setText(selectedUnusedThietbi.getMaLoai());
             }
         });
 
@@ -285,7 +285,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         txtMatb.setText(selectedThietBi.getMatb());
         txtTentb.setText(selectedThietBi.getTentb());
         txtXuatxu.setText(selectedThietBi.getXuatxu());
-        txtMaloai.setText(selectedThietBi.getMaloai());
+        txtMaloai.setText(selectedThietBi.getMaLoai());
         txtSoluong.setText(ctsd.getSoluong());
         txtNgaySuDung.setText(ctsd.getNgaysudung());
 
@@ -487,7 +487,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(15);
             title.setColor(ContextCompat.getColor(this, android.R.color.black));
-            canvas.drawText(selectedThietBi.getMaloai(),430 , heightItem, title);
+            canvas.drawText(selectedThietBi.getMaLoai(),430 , heightItem, title);
 
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(15);

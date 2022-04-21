@@ -50,11 +50,13 @@
         android:paddingTop="10dp">
 
         <Button
+            android:onClick="quanLyLoai"
             android:text="Quản lý loại"
             android:id="@+id/btnLoai"
             style="@style/button_long" />
 
         <Button
+            android:onClick="quanLyThietBi"
             android:text="Quản lý thiết bị"
             android:id="@+id/btnThietbi"
             android:background="@drawable/custom_button"
@@ -73,5 +75,6 @@
             android:id="@+id/btnChitiet"
             android:background="@drawable/custom_button"
             style="@style/button_long"/>
+
     </LinearLayout>
 </LinearLayout>

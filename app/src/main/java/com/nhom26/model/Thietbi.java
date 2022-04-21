@@ -10,25 +10,8 @@ public class Thietbi implements Serializable {
     private String matb;
     private String tentb;
     private String xuatxu;
-    private String maloai;
+    private String maLoai;
     private String soluong;
-
-    public String getSoluong() {
-        return soluong;
-    }
-
-    public void setSoluong(String soluong) {
-        this.soluong = soluong;
-    }
-
-    public Thietbi(String matb, String tentb, String xuatxu, String maloai, String soluong) {
-
-        this.matb = matb;
-        this.tentb = tentb;
-        this.xuatxu = xuatxu;
-        this.maloai = maloai;
-        this.soluong = soluong;
-    }
 
     public String getMatb() {
         return matb;
@@ -54,24 +37,44 @@ public class Thietbi implements Serializable {
         this.xuatxu = xuatxu;
     }
 
-    public String getMaloai() {
-        return maloai;
+    public String getMaLoai() {
+        return maLoai;
     }
 
-    public void setMaloai(String maloai) {
-        this.maloai = maloai;
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
     }
 
-    public Thietbi(String matb, String tentb, String xuatxu, String maloai) {
+    public String getSoluong() {
+        return soluong;
+    }
 
-        this.matb = matb;
-        this.tentb = tentb;
-        this.xuatxu = xuatxu;
-        this.maloai = maloai;
+    public void setSoluong(String soluong) {
+        this.soluong = soluong;
     }
 
     public Thietbi() {
+    }
 
+    public Thietbi(String matb, String tentb, String xuatxu, String maLoai) {
+        this.matb = matb;
+        this.tentb = tentb;
+        this.xuatxu = xuatxu;
+        this.maLoai = maLoai;
+    }
+
+    public Thietbi(String matb, String tentb, String xuatxu, String maLoai, String soluong) {
+        this.matb = matb;
+        this.tentb = tentb;
+        this.xuatxu = xuatxu;
+        this.maLoai = maLoai;
+        this.soluong = soluong;
+    }
+
+    public Thietbi(String matb, String tentb, String xuatxu) {
+        this.matb = matb;
+        this.tentb = tentb;
+        this.xuatxu = xuatxu;
     }
 
     @Override
