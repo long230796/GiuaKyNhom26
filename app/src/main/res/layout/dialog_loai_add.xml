@@ -39,12 +39,12 @@
                 android:id="@+id/textView3"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/edtMaLoaiadd"
+                android:id="@+id/txtMaLoaiadd"
                 android:layout_weight="1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -74,6 +74,23 @@
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLayMaLoai"
+                android:layout_weight="1"
+                android:text="Lấy Mã" />
         </LinearLayout>
 
         <LinearLayout

@@ -25,6 +25,8 @@ import com.nhom26.giuakynhom26.*;
 import com.nhom26.model.Loai;
 import com.nhom26.model.Thietbi;
 
+import java.util.Random;
+
 public class ThietBiActivity extends AppCompatActivity {
 
     ListView lvTB;
@@ -176,7 +178,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void hienThiManHinhChiTiet(){
         dialogChitiet = new Dialog(ThietBiActivity.this);
-        dialogChitiet.setContentView(R.layout.activity_tb_detail);
+        dialogChitiet.setContentView(R.layout.dialog_tb_detail);
 
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaTBdetail);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtTenTBdetail);
@@ -198,6 +200,7 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     private void hienThiManHinhThemTB() {
+
         dialogThem = new Dialog(ThietBiActivity.this);
         dialogThem.setContentView(R.layout.dialog_tb_add);
 
@@ -205,6 +208,7 @@ public class ThietBiActivity extends AppCompatActivity {
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemTB);
         maTB = (TextView) dialogThem.findViewById(R.id.txtMaTBadd);
         edtTB =(EditText) dialogThem.findViewById(R.id.edtTenTBadd);
+        final Button btnLayMa = dialogThem.findViewById(R.id.btnLayMa);
         edtXuatxu =(EditText) dialogThem.findViewById(R.id.edtXuatXuadd);
         spLoai = (Spinner) dialogThem.findViewById(R.id.spLoaiTBadd);
         txtM = (TextView) dialogThem.findViewById(R.id.txtMaLoaiTBadd);
@@ -215,11 +219,21 @@ public class ThietBiActivity extends AppCompatActivity {
         getLoaiTBFromDB();
         selectedLoai=null;
 
+        btnLayMa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random r = new Random();
+                int randomInt = r.nextInt(10000) + 1;
+                maTB.setText(layMa(edtTB.getText().toString())+String.valueOf(randomInt));
+            }
+        });
+
         spLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedLoai = loaiArrayAdapter.getItem(i);
                 txtM.setText(selectedLoai.getMaLoai());
+
             }
 
             @Override
@@ -231,8 +245,9 @@ public class ThietBiActivity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 add();
-//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+//                Toast.makeText(ThietBiActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -252,7 +267,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void hienThiManHinhEditTB() {
         dialogChinhSua = new Dialog(ThietBiActivity.this);
-        dialogChinhSua.setContentView(R.layout.activity_tb_edit);
+        dialogChinhSua.setContentView(R.layout.dialog_tb_edit);
 
         maTB = (TextView) dialogChinhSua.findViewById(R.id.txtMaTBedit);
         edtTB = (EditText) dialogChinhSua.findViewById(R.id.edtTenTBedit);
@@ -290,7 +305,7 @@ public class ThietBiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update();
-//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                Toast.makeText(ThietBiActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -331,6 +346,7 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     private void add () {
+
         ContentValues values = new ContentValues();
         values.put("MATB", maTB.getText().toString());
         values.put("TENTB", edtTB.getText().toString());
@@ -339,7 +355,7 @@ public class ThietBiActivity extends AppCompatActivity {
 
         int kq = (int) MainActivity.database.insert("THIETBI",null , values);
         if (kq > 0) {
-            Toast.makeText(ThietBiActivity.this, "Them thành công", Toast.LENGTH_LONG).show();
+            Toast.makeText(ThietBiActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
             dialogThem.dismiss();
             getTBFromDB();
         } else {
@@ -409,4 +425,19 @@ public class ThietBiActivity extends AppCompatActivity {
         }
         return tenLoai;
     }
+
+    //Hàm lấy chữ cái đầu
+    public String layMa(String str){
+        String ten = "";
+        String[] tu = str.split(" ");
+        for (String s : tu) {
+            if (!s.equals("") && !s.equals(null)) {
+//                System.out.println(String.valueOf(s.charAt(0)));
+                ten+=String.valueOf(s.charAt(0));
+                ten.toUpperCase();
+            }
+        }
+        return ten;
+    }
+
 }

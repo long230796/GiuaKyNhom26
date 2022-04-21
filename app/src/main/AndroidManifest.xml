@@ -22,15 +22,18 @@
         <activity
             android:name=".activities.PhongActivity"
             android:label="@string/phong_name" />
-        <activity android:name=".activities.LoaiTBActivity" />
-        <activity android:name=".activities.ThietBiActivity" />
+        <activity
+            android:name=".activities.LoaiTBActivity"
+            android:label="Quản lí Loại thiết bị"/>
+        <activity
+            android:name=".activities.ThietBiActivity"
+            android:label="Quản lí thiết bị"/>
         <activity
             android:name=".activities.PhongActivity"
             android:label="@string/phong_name" />
         <activity
             android:name=".activities.ChitietsudungPhongActivity"
             android:label="Chi tiết sử dụng"></activity>
-        <activity android:name=".activities.EditThietBiActivity"></activity>
     </application>
 
 </manifest>

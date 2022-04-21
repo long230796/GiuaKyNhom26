@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.nhom26.giuakynhom26.*;
 import com.nhom26.model.Loai;
 
+import java.util.Random;
+
 public class LoaiTBActivity extends AppCompatActivity {
 
     ListView lvLoaiTB;
@@ -150,7 +152,7 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     private void hienThiManHinhChiTiet() {
         dialogChitiet = new Dialog(LoaiTBActivity.this);
-        dialogChitiet.setContentView(R.layout.activity_loaitb_detail);
+        dialogChitiet.setContentView(R.layout.dialog_loaitb_detail);
 
         TextView txtMa = dialogChitiet.findViewById(R.id.txtMaLoaidetail);
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtLoaiTBdetail);
@@ -169,18 +171,26 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     private void hienThiManHinhThemLoai() {
         dialogThem = new Dialog(LoaiTBActivity.this);
-        dialogThem.setContentView(R.layout.activity_loai_add);
+        dialogThem.setContentView(R.layout.dialog_loai_add);
 
         edtLoaiTB = (EditText) dialogThem.findViewById(R.id.edtLoaiadd);
-        edtMaLoai=(EditText) dialogThem.findViewById(R.id.edtMaLoaiadd);
+        maLoai=(TextView) dialogThem.findViewById(R.id.txtMaLoaiadd);
         btnLuu = (Button) dialogThem.findViewById(R.id.btnThemLoai);
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemLoai);
-
+        final Button btnLayMa = dialogThem.findViewById(R.id.btnLayMaLoai);
+        btnLayMa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random r = new Random();
+                int randomInt = r.nextInt(10000) + 1;
+                maLoai.setText(layMa(edtLoaiTB.getText().toString())+String.valueOf(randomInt));
+            }
+        });
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 add();
-//                Toast.makeText(PhongActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+//                Toast.makeText(LoaiTBActivity.this, "Them thành công", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -188,7 +198,7 @@ public class LoaiTBActivity extends AppCompatActivity {
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancel(dialogChinhSua);
+                cancel(dialogThem);
             }
         });
 
@@ -198,7 +208,7 @@ public class LoaiTBActivity extends AppCompatActivity {
 
     private void hienThiManHinhEditLoai() {
         dialogChinhSua = new Dialog(LoaiTBActivity.this);
-        dialogChinhSua.setContentView(R.layout.activity_loai_edit);
+        dialogChinhSua.setContentView(R.layout.dialog_loai_edit);
 
         edtLoaiTB = (EditText) dialogChinhSua.findViewById(R.id.edtLoaiedit);
         maLoai = (TextView) dialogChinhSua.findViewById(R.id.txtMaLoaiedit);
@@ -272,7 +282,7 @@ public class LoaiTBActivity extends AppCompatActivity {
     private void add () {
 
         ContentValues values = new ContentValues();
-        values.put("MALOAI", edtMaLoai.getText().toString());
+        values.put("MALOAI", maLoai.getText().toString());
         values.put("TENLOAI", edtLoaiTB.getText().toString());
 
         int kq = (int) MainActivity.database.insert("LOAITHIETBI",null, values);
@@ -317,5 +327,18 @@ public class LoaiTBActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
+    //Hàm lấy chữ cái đầu
+    public String layMa(String str){
+        String ten = "";
+        String[] tu = str.split(" ");
+        for (String s : tu) {
+            if (!s.equals("") && !s.equals(null)) {
+//                System.out.println(String.valueOf(s.charAt(0)));
+                ten+=String.valueOf(s.charAt(0));
+                ten.toUpperCase();
+            }
+        }
+        return ten;
+    }
 
 }
