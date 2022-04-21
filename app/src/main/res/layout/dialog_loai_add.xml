@@ -53,13 +53,13 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <TextView
-                android:text="Tên Loại thiết bị"
+                android:text="Tên Loại "
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
@@ -75,47 +75,20 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnLayMaLoai"
-                android:layout_weight="1"
-                android:text="Lấy Mã" />
-        </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            style="@style/footerDoubleButton">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnThemLoai"
-                android:layout_weight="1"
+                style="@style/button_default"
                 android:text="Lưu" />
 
             <Button
                 android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/button_default"
                 android:id="@+id/btnHuyThemLoai"
-                android:layout_weight="1" />
+                />
         </LinearLayout>
 
 

@@ -3,8 +3,8 @@ package com.nhom26.giuakynhom26.activities;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nhom26.giuakynhom26.*;
+import com.nhom26.giuakynhom26.R;
 import com.nhom26.model.Loai;
 
 import java.util.Random;
@@ -174,19 +174,16 @@ public class LoaiTBActivity extends AppCompatActivity {
         dialogThem = new Dialog(LoaiTBActivity.this);
         dialogThem.setContentView(R.layout.dialog_loai_add);
 
+        Random r = new Random();
+        int randomInt = r.nextInt(10000) + 1;
+
         edtLoaiTB = (EditText) dialogThem.findViewById(R.id.edtLoaiadd);
         maLoai=(TextView) dialogThem.findViewById(R.id.txtMaLoaiadd);
         btnLuu = (Button) dialogThem.findViewById(R.id.btnThemLoai);
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemLoai);
-        final Button btnLayMa = dialogThem.findViewById(R.id.btnLayMaLoai);
-        btnLayMa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Random r = new Random();
-                int randomInt = r.nextInt(10000) + 1;
-                maLoai.setText(layMa(edtLoaiTB.getText().toString())+String.valueOf(randomInt));
-            }
-        });
+        Button btnLayMa = dialogThem.findViewById(R.id.btnLayMaLoai);
+        maLoai.setText(layMa(edtLoaiTB.getText().toString())+String.valueOf(randomInt));
+
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
