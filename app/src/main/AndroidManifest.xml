@@ -34,6 +34,7 @@
         <activity
             android:name=".activities.ChitietsudungPhongActivity"
             android:label="Chi tiết sử dụng"></activity>
+        <activity android:name=".activities.SendMailActivity" android:label="  Soạn email" ></activity>
     </application>
 
 </manifest>

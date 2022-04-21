@@ -123,6 +123,15 @@ public class MainActivity extends AppCompatActivity {
         Dialog dialogThongTinPhanMem = new Dialog(MainActivity.this);
         dialogThongTinPhanMem.setContentView(R.layout.dialog_thongtinphanmem);
 
+        Button btnLienHe = dialogThongTinPhanMem.findViewById(R.id.btnLienHe);
+
+        btnLienHe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SendMailActivity.class);
+                startActivity(intent);
+            }
+        });
         dialogThongTinPhanMem.show();
     }
 
