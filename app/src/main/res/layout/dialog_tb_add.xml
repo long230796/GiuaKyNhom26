@@ -51,7 +51,7 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -72,22 +72,6 @@
                 android:layout_weight="1"
                 android:textSize="14sp" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnLayMa"
-                android:layout_weight="1"
-                android:text="Lấy Mã" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +105,7 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -147,7 +131,7 @@
             android:orientation="horizontal"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -166,28 +150,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            style="@style/footerDoubleButton">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnThemTB"
-                android:layout_weight="1"
-                android:text="Lưu" />
+                android:text="Lưu"
+                style="@style/button_default" />
 
             <Button
                 android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/button_default"
                 android:id="@+id/btnHuyThemTB"
-                android:layout_weight="1" />
+                 />
         </LinearLayout>
 
 

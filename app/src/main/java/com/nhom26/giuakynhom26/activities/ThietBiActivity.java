@@ -204,6 +204,9 @@ public class ThietBiActivity extends AppCompatActivity {
         dialogThem = new Dialog(ThietBiActivity.this);
         dialogThem.setContentView(R.layout.dialog_tb_add);
 
+        Random r = new Random();
+        int randomInt = r.nextInt(10000) + 1;
+
         btnThem = (Button) dialogThem.findViewById(R.id.btnThemTB);
         btnHuy = (Button) dialogThem.findViewById(R.id.btnHuyThemTB);
         maTB = (TextView) dialogThem.findViewById(R.id.txtMaTBadd);
@@ -212,21 +215,13 @@ public class ThietBiActivity extends AppCompatActivity {
         edtXuatxu =(EditText) dialogThem.findViewById(R.id.edtXuatXuadd);
         spLoai = (Spinner) dialogThem.findViewById(R.id.spLoaiTBadd);
         txtM = (TextView) dialogThem.findViewById(R.id.txtMaLoaiTBadd);
+        maTB.setText(layMa(edtTB.getText().toString())+String.valueOf(randomInt));
 
         loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, android.R.layout.simple_spinner_item);
         loaiArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLoai.setAdapter(loaiArrayAdapter);
         getLoaiTBFromDB();
         selectedLoai=null;
-
-        btnLayMa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Random r = new Random();
-                int randomInt = r.nextInt(10000) + 1;
-                maTB.setText(layMa(edtTB.getText().toString())+String.valueOf(randomInt));
-            }
-        });
 
         spLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
