@@ -252,8 +252,8 @@ public class ThietBiActivity extends AppCompatActivity {
         txtM = (TextView) dialogThem.findViewById(R.id.txtMaLoaiTBadd);
         maTB.setText(layMa(edtTB.getText().toString())+String.valueOf(randomInt));
 
-        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, android.R.layout.simple_spinner_item);
-        loaiArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        loaiArrayAdapter = new ArrayAdapter<Loai>(ThietBiActivity.this, R.layout.simple_spinner_item);
+        loaiArrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         spLoai.setAdapter(loaiArrayAdapter);
         getLoaiTBFromDB();
         selectedLoai=null;
