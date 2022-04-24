@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:text="Chi tiết sử dụng"
+        android:id="@+id/textView2"
+        style="@style/headerActivity" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@drawable/textview_border"
+        android:layout_weight="0.01"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Thiết bị"
+            android:id="@+id/textView16"
+            tools:textColor="@drawable/textview_border"
+            style="@style/bodyTitle" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp">
+
+            <TextView
+                android:text="Mã TB"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textSize="14sp"
+                android:layout_width="80dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMaTB"
+                android:layout_weight="0.81" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Tên TB"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="14sp"
+                android:layout_width="80dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTenTB"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Xuất xứ"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="14sp"
+                android:layout_width="80dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtXuatXu"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Mã loại"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="14sp"
+                android:layout_width="80dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMaLoai"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:text="Phòng sử dụng"
+                android:id="@+id/textView"
+                tools:textColor="@drawable/textview_border"
+                style="@style/footerTitle" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ListView
+        android:background="@drawable/border_right_left_top"
+        android:layout_width="match_parent"
+        android:id="@+id/lvPhong"
+        android:layout_height="250dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.98"
+        android:layout_height="10dp"
+        android:background="@drawable/border_right_left_bottom"
+        android:gravity="right">
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

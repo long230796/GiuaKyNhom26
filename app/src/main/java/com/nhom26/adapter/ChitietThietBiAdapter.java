@@ -15,14 +15,14 @@ import com.nhom26.model.Thietbi;
  * Created by long2 on 4/13/2022.
  */
 
-public class ChitietThietBiPhongAdapter extends ArrayAdapter<Chitietsudung> {
+public class ChitietThietBiAdapter extends ArrayAdapter<Chitietsudung> {
     Activity context;
     int resource;
 
 
     Thietbi tb;
 
-    public ChitietThietBiPhongAdapter(Activity context, int resource) {
+    public ChitietThietBiAdapter(Activity context, int resource) {
         super(context, resource);
         this.context = context;
         this.resource = resource;

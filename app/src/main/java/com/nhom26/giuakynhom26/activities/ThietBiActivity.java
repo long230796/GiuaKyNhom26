@@ -220,11 +220,22 @@ public class ThietBiActivity extends AppCompatActivity {
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtTenTBdetail);
         TextView txtXuatxu = dialogChitiet.findViewById(R.id.txtXuatXudetail);
         TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
+        Button btnChiTietSuDung = dialogChitiet.findViewById(R.id.btnChiTietSuDung);
 
         txtMa.setText(selectedTB.getMatb());
         txtLoai.setText(selectedTB.getTentb());
         txtXuatxu.setText(selectedTB.getXuatxu());
         txtLoaiTB.setText(findTenLoaiTB(selectedTB.getMaLoai()));
+
+        btnChiTietSuDung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ThietBiActivity.this, ChitietsudungTBActivity.class);
+                intent.putExtra("thietBi", selectedTB);
+
+                startActivity(intent);
+            }
+        });
 
         dialogChitiet.show();
     }

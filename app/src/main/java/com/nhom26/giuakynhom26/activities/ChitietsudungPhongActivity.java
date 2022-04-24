@@ -29,7 +29,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nhom26.adapter.ChitietThietBiPhongAdapter;
+import com.nhom26.adapter.ChitietThietBiAdapter;
 import com.nhom26.giuakynhom26.R;
 import com.nhom26.model.Chitietsudung;
 import com.nhom26.model.Phong;
@@ -53,7 +53,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
     ListView lvThietBi;
     Phong phong;
     Thietbi selectedThietBi, selectedUnusedThietbi;
-    ChitietThietBiPhongAdapter chitietsudungAdapter;
+    ChitietThietBiAdapter chitietsudungAdapter;
     ArrayAdapter<Thietbi> thietbiAdapter, unusedThietbiAdapter;
     List<String> usedThietbi;
 
@@ -126,7 +126,7 @@ public class ChitietsudungPhongActivity extends AppCompatActivity {
         txtLoaiP.setText(phong.getLoai());
         txtTang.setText(String.valueOf(phong.getTang()));
 
-        chitietsudungAdapter = new ChitietThietBiPhongAdapter(ChitietsudungPhongActivity.this, R.layout.phong_custom_chitietsudung);
+        chitietsudungAdapter = new ChitietThietBiAdapter(ChitietsudungPhongActivity.this, R.layout.phong_custom_chitietsudung);
         unusedThietbiAdapter = new ArrayAdapter<Thietbi>(ChitietsudungPhongActivity.this, android.R.layout.simple_list_item_1);
         usedThietbi = new ArrayList<String>();
 
