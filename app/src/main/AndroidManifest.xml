@@ -24,16 +24,19 @@
             android:label="@string/phong_name" />
         <activity
             android:name=".activities.LoaiTBActivity"
-            android:label="Quản lí Loại thiết bị"/>
+            android:label="Quản lí Loại thiết bị" />
         <activity
             android:name=".activities.ThietBiActivity"
-            android:label="Quản lí thiết bị"/>
+            android:label="Quản lí thiết bị" />
         <activity
             android:name=".activities.PhongActivity"
             android:label="@string/phong_name" />
         <activity
             android:name=".activities.ChitietsudungPhongActivity"
-            android:label="Chi tiết sử dụng"></activity>
+            android:label="Chi tiết sử dụng" />
+        <activity android:name=".activities.ChitietSudungTBActivity"
+            android:label="Chi tiết sử dụng thiết bị"
+            />
     </application>
 
 </manifest>

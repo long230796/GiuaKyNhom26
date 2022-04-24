@@ -2,6 +2,7 @@ package com.nhom26.giuakynhom26.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -184,11 +185,19 @@ public class ThietBiActivity extends AppCompatActivity {
         TextView txtLoai = dialogChitiet.findViewById(R.id.txtTenTBdetail);
         TextView txtXuatxu = dialogChitiet.findViewById(R.id.txtXuatXudetail);
         TextView txtLoaiTB = dialogChitiet.findViewById(R.id.txtLoaiTBdetailTB);
-
+        final Button btnCTSD = dialogChitiet.findViewById(R.id.btnCTSD);
         txtMa.setText(selectedTB.getMatb());
         txtLoai.setText(selectedTB.getTentb());
         txtXuatxu.setText(selectedTB.getXuatxu());
         txtLoaiTB.setText(findTenLoaiTB(selectedTB.getMaLoai()));
+        btnCTSD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ThietBiActivity.this, ChitietSudungTBActivity.class);
+                intent.putExtra("thietbi",selectedTB);
+                startActivity(intent);
+            }
+        });
 
         dialogChitiet.show();
     }
