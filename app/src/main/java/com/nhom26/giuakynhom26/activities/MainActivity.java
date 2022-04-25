@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         String title = preferences.getString("programeName", "");
 
         if (imageString.matches("") && title.matches("")) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_main);
             String tempString = BitMapToString(bitmap);
             luuImageSharedPreferences(tempString);
             luuTitleSharedPreferences("Chương trình quản lý thiết bị phòng học");
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             docTitleSharedPreferences();
 
         } else if (imageString.matches("") && !title.matches("")) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_main);
             String tempString = BitMapToString(bitmap);
             luuImageSharedPreferences(tempString);
             docImageSharedPreferences();
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences(sharePreferenceName, MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
 
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.imagemain);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_main);
                 String tempString = BitMapToString(bitmap);
                 luuImageSharedPreferences(tempString);
                 luuTitleSharedPreferences("Chương trình quản lý thiết bị phòng học");
